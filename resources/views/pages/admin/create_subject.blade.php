@@ -52,8 +52,8 @@
 
 
 @section('content')
-    <div class="container-fluid"
-        <div class="row"
+    <div class="container-fluid">
+        <div class="row">
             <div class="col">
                 <div class="multi-collapse justify-content-md-center collapse show" id="collapseCreateUser">
                     <div class="card card-body" id="card">
