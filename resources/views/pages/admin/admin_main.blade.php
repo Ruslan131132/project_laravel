@@ -1,4 +1,4 @@
-@extends('layouts.admin_page_layout')
+@extends('layouts.admin-layout')
 
 @section('description', 'Admin Panel')
 
