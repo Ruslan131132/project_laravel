@@ -133,7 +133,7 @@
                         </a>
                         <br/>
                         <font size="2" style="color: #d7d7d7">
-                            <a  class="links" href="https://www.gosuslugi.ru/">
+                            <a class="links" href="https://www.gosuslugi.ru/">
                                 <u>Больше услуг на www.gosuslugi.ru</u>
                             </a>
                         </font>
@@ -207,7 +207,6 @@
                     <a href="http://www.odnoklassniki.ru/dnevnik.ru"> <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/social-links/odnoklassniki.png" width="26" height="26"></a>
                     <a href="https://www.youtube.com/user/DnevnikVideoRussia"> <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/social-links/youtube.png" width="26" height="26"></a>
                 </p>
-
             </div>
             <div class="col-6 col-md">
                 <h5>О компании</h5>
@@ -238,7 +237,6 @@
                 <ul class="list-unstyled text-small">
                     <li><a href="#">Портал</a></li>
                     <li><a href="#">Подключить ОО</a></li>
-
                 </ul>
             </div>
         </div>
