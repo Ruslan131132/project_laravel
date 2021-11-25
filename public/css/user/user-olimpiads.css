@@ -1,0 +1,10 @@
+@media screen and (max-device-width: 767px) {
+    #img1 {
+        height:50%;
+    }
+}
+@media screen and  (min-device-width: 767px) and (max-device-width: 1000px) {
+    #img1 {
+        height: 70%;
+    }
+}
