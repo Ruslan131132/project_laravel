@@ -1,0 +1,21 @@
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius:25px;
+}
+@media screen and  (min-device-width: 767px) and (max-device-width: 1000px) {
+    .bd-placeholder-img {
+        width: 150px;
+        height: 150px;
+    }
+}
+@media screen and (max-device-width: 767px) {
+    .bd-placeholder-img {
+        width: 150px;
+        height: 150px;
+    }
+}
