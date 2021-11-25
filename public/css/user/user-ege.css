@@ -1,0 +1,10 @@
+@media screen and (max-device-width: 767px) {
+    .link_none_a {
+        font-size: 9pt;
+    }
+}
+@media screen and  (min-device-width: 767px) and (max-device-width: 1000px) {
+    .link_none_a {
+        font-size: 9pt;
+    }
+}
