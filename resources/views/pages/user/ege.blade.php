@@ -134,13 +134,11 @@
                 </tbody>
             </table>
         </div>
-
         <br/>
-
-        <div class="container" style="background: #e9ecef; border-radius: 27px;border: 3px solid #66CCCC;" >
-            <div class="row" style="text-align: center;margin-top: 1%" align="center">
+        <div class="container container-info">
+            <div class="row row-info" align="center">
                 <div class="col">
-                    <b><p><a class="link_none_a" href="https://old.mospolytech.ru/index.php?id=5709" style="color: black">	КАК <nobr style="color: red">ПОСТУПИТЬ НА ПОДГОТОВИТЕЛЬНЫЕ КУРСЫ</nobr> Московского Политеха</a></p></b>
+                    <b><p><a class="link_none_a" href="https://old.mospolytech.ru/index.php?id=5709">&nbsp;КАК&nbsp;<nobr style="color: red">ПОСТУПИТЬ НА ПОДГОТОВИТЕЛЬНЫЕ КУРСЫ</nobr> Московского Политеха</a></p></b>
                 </div>
             </div>
         </div>
