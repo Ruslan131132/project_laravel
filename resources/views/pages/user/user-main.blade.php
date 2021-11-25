@@ -87,30 +87,30 @@
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label for="firstName">Имя</label>
-                            <input type="text" readonly class="form-control" id="firstName" value="{{ $data->Name }}" style="color: #000000">
+                            <input type="text" readonly class="form-control" id="firstName" value="{{ $data->Name }}">
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="lastName">Фамилия</label>
-                            <input type="text" readonly class="form-control" id="lastName" value="{{ $data->Surname }}" style="color: #000000">
+                            <input type="text" readonly class="form-control" id="lastName" value="{{ $data->Surname }}">
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="Patronymic">Отчество</label>
-                            <input type="text" readonly class="form-control" id="Patronymic" value="{{ $data->Patronymic }}" style="color: #000000">
+                            <input type="text" readonly class="form-control" id="Patronymic" value="{{ $data->Patronymic }}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="position">Должность</label>
-                            <input type="text" readonly class="form-control" id="position" value="{{ $User_Type }}" style="color: #000000">
+                            <input type="text" readonly class="form-control" id="position" value="{{ $User_Type }}">
                         </div>
                         <div class="col-md-6 mb-3">
                                 <label for="class">{{ $User_Type == "Учитель" ? "Классный руководитель" : "Класс"}}</label>
-                                <input type="text" readonly class="form-control" id="class" value="{{ $User_Type == "Учитель" ? $data->HaveClass : $data->Class}}" style="color: #000000">
+                                <input type="text" readonly class="form-control" id="class" value="{{ $User_Type == "Учитель" ? $data->HaveClass : $data->Class}}">
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="address">Адрес</label>
-                        <input type="text" readonly class="form-control" id="address" value="{{ $User_Type == "Учитель" ? "Не указан" : $data->Address }}" style="color: #000000">
+                        <input type="text" readonly class="form-control" id="address" value="{{ $User_Type == "Учитель" ? "Не указан" : $data->Address }}">
                     </div>
                 </form>
             </div>
