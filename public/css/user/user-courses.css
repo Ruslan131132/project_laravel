@@ -1,0 +1,39 @@
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius:25px 25px 0px 0px;
+}
+
+/* Делаем заголовки тоньше */
+.featurette-heading {
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -.05rem;
+}
+@media screen and (max-device-width: 767px) {
+    .bd-placeholder-img {
+        height: 250px;
+    }
+    .alert{
+        width: 80%;
+        left: 15%;
+    }
+}
+@media screen and  (min-device-width: 767px) and (max-device-width: 1000px) {
+    .bd-placeholder-img {
+        height: 130px;
+    }
+    .alert{
+        width: 80%;
+        left: 40%;
+    }
+}
+@media screen and (min-device-width: 1000px) {
+    .alert{
+        left: 50%;
+    }
+}
