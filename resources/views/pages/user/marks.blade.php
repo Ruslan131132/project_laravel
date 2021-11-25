@@ -1,8 +1,8 @@
 @extends('layouts.user-layout')
 
-@section('description', 'User main page')
+@section('description', 'User marks page')
 
-@section('title-block', 'Main')
+@section('title-block', 'Marks')
 
 @section('styles')
     <link rel="stylesheet" href="/css/user/user-marks.css">
