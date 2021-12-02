@@ -85,19 +85,23 @@
             </div>
             <div class="text-center">
 
-                <form class="form-signin" method="POST" {{--action="{{ route('login') }}"--}}>
+                <form class="form-signin" method="POST" action="{{ route('login') }}">
                     @if(session('wrong'))
                         <div class="alert alert-danger">
                             {{ session('wrong') }}
                         </div>
                     @endif
-
                     @csrf
-                    <label for="User_Id" class="sr-only">ID</label>
-                    <input type="number" name="User_Id"  id="User_Id" class="form-control" placeholder="ID" required autofocus>
-                    <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password" name="Password" id="Password" class="form-control" placeholder="Password" required>
-                    <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
+                    <label for="user_id" class="sr-only">ID</label>
+                    <input type="number" name="user_id"  id="user_id" class="form-control" placeholder="ID" required autofocus>
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Пароль" required>
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" name="remember_token" value="1"> Запомнить меня
+                        </label>
+                    </div>
+                    <button class="btn btn-lg btn-success btn-block" type="submit">Войти</button>
                 </form>
             </div>
         </div>
