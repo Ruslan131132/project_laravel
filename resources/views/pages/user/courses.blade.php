@@ -83,7 +83,7 @@
                             @for($i = 0; $i < count($courses); $i++)
                                 <div class="col-md-3">
                                     <div class="card mb-4 shadow-sm" style="border-radius: 25px;">
-                                        <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/courses/c{{$i+1}}.jpg" class="bd-placeholder-img card-img-top" width="100%" height="200">
+                                        <img src="/img/courses/c{{$i+1}}.jpg" class="bd-placeholder-img card-img-top" width="100%" height="200">
                                         <div class="card-body">
                                             <p class="card-text">{{$courses[$i][0]}}</p>
                                             <div class="row">

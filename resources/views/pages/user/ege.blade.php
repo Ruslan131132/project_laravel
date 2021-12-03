@@ -66,16 +66,16 @@
                 <tbody>
                 <tr>
                     <td width="25%">
-                        <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/ege/2.png" class="mt48 mb24">
+                        <img src="/img/ege/2.png" class="mt48 mb24">
                     </td>
                     <td width="25%">
-                        <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/ege/3.png" class="mt48 mb24">
+                        <img src="/img/ege/3.png" class="mt48 mb24">
                     </td>
                     <td width="25%">
-                        <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/ege/4.png" class="mt48 mb24">
+                        <img src="/img/ege/4.png" class="mt48 mb24">
                     </td>
                     <td width="25%">
-                        <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/ege/5.png" class="mt48 mb24">
+                        <img src="/img/ege/5.png" class="mt48 mb24">
                     </td>
                 </tr>
                 <tr>
@@ -98,16 +98,16 @@
                 </tr>
                 <tr>
                     <td>
-                        <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/ege/6.png" class="mt48 mb24">
+                        <img src="/img/ege/6.png" class="mt48 mb24">
                     </td>
                     <td>
-                        <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/ege/7.png" class="mt48 mb24">
+                        <img src="/img/ege/7.png" class="mt48 mb24">
                     </td>
                     <td>
-                        <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/ege/8.png" class="mt48 mb24">
+                        <img src="/img/ege/8.png" class="mt48 mb24">
                     </td>
                     <td>
-                        <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/ege/9.png" class="mt48 mb24">
+                        <img src="/img/ege/9.png" class="mt48 mb24">
                     </td>
                 </tr>
                 <tr>

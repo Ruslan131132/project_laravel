@@ -12,7 +12,7 @@
 </head>
 <header>
     <nav class="navbar sticky-top navbar-expand-md fixed-top ">
-        <a class="navbar-brand" href="#"><img src="http://bigproject.std-1055.ist.mospolytech.ru/img/mospolytech-logo-white.png" alt="logo" width="20" height="20" class="round"></a>
+        <a class="navbar-brand" href="#"><img src="/img/mospolytech-logo-white.png" alt="logo" width="20" height="20" class="round"></a>
         <button style="color: #999" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-caret-down-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M3.544 6.295A.5.5 0 0 1 4 6h8a.5.5 0 0 1 .374.832l-4 4.5a.5.5 0 0 1-.748 0l-4-4.5a.5.5 0 0 1-.082-.537z"/>

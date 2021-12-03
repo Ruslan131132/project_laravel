@@ -66,7 +66,7 @@
                                 <p><a  href="https://olimpiada.ru/activity/43" style="color: black; font-size: 150%">Интеллектуальный чемпионат России для всех желающих. Проводится по 24 предметам в четыре этапа для 4-11 классов</a></p>
                             </div>
                             <div class="col">
-                                <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/olimp1.png" height="100%" width="100%" id="img1">
+                                <img src="/img/olimp1.png" height="100%" width="100%" id="img1">
                             </div>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
                 <div class="row" >
                     <div class="col" style="text-align: center;">
                         <p style="text-align: center;">
-                            <img style=" width: 80%; margin-top: 20px;" src="http://bigproject.std-1055.ist.mospolytech.ru/img/olimp3.png" alt="Всероссийская олимпиада школьников в Москве" align="center" >
+                            <img style=" width: 80%; margin-top: 20px;" src="/img/olimp3.png" alt="Всероссийская олимпиада школьников в Москве" align="center" >
                         </p>
                         <p>
                             <a  href="https://vos.olimpiada.ru/" >Главная олимпиада страны →</a>
