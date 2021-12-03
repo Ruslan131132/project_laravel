@@ -21,6 +21,10 @@
     text-decoration: none;
 }
 
+.jumbotron{
+    margin: 0;
+}
+
 .product-device {
     position: absolute;
     right: 10%;
@@ -55,12 +59,6 @@
 .flex-equal > * {
     -ms-flex: 1;
     flex: 1;
-}
-@media (min-width: 768px) {
-    .flex-md-equal > * {
-        -ms-flex: 1;
-        flex: 1;
-    }
 }
 
 .overflow-hidden { overflow: hidden; }
@@ -118,13 +116,6 @@ a.links:hover {
     user-select: none;
 }
 
-@media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-    }
-
-}
-
 .link_list{
     padding: 10%;
     line-height: 2.5;
@@ -142,6 +133,15 @@ a.links:hover {
     height:80% ;
     border-radius: 21px 21px 0 0;
     color: white;
+}
+@media (min-width: 768px) {
+    .flex-md-equal > * {
+        -ms-flex: 1;
+        flex: 1;
+    }
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
 }
 
 @media screen and  (min-device-width: 767px) and (max-device-width: 1000px) {

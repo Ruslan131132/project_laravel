@@ -12,7 +12,7 @@
 
 @section('content')
     <nav class="navbar sticky-top navbar-expand-md fixed-top ">
-        <a class="navbar-brand" href="#"><img src="http://bigproject.std-1055.ist.mospolytech.ru/img/mospolytech-logo-white.png" alt="logo" width="20" height="20" class="round"></a>
+        <a class="navbar-brand" href="#"><img src="/img/mospolytech-logo-white.png" alt="logo" width="20" height="20" class="round"></a>
         <button style="color: #999" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-caret-down-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M3.544 6.295A.5.5 0 0 1 4 6h8a.5.5 0 0 1 .374.832l-4 4.5a.5.5 0 0 1-.748 0l-4-4.5a.5.5 0 0 1-.082-.537z"/>
@@ -75,7 +75,7 @@
             </div>
         </div>
     </div>
-
+    <br class="clearfix w-100 d-md-none pb-3">
     <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
         <div class="bg-light mr-md-3 py-3 px-3 py-md-5 px-md-3 text-center overflow-hidden">
             <div class="my-3 p-3">
@@ -106,9 +106,7 @@
             </div>
         </div>
     </div>
-
     <br class="clearfix w-100 d-md-none pb-3">
-
     <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
         <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 p-3">
@@ -150,7 +148,7 @@
                 <h2 class="display-5">Олимпиада по математике</h2>
                 <p class="lead">Главные призы - новые iPhone, iPad и PS5 </p>
             </div>
-            <div class="bg-light shadow-sm mx-auto" style="width: 80%; height:80%; border-radius: 21px 21px 0 0;"><img id="prize_img" src="http://bigproject.std-1055.ist.mospolytech.ru/img/Prize.jpg" alt="Здесь должен быть школьник" >
+            <div class="bg-light shadow-sm mx-auto" style="width: 80%; height:80%; border-radius: 21px 21px 0 0;"><img id="prize_img" src="/img/Prize.jpg" alt="Здесь должен быть школьник" >
             </div>
 
         </div>
@@ -162,7 +160,7 @@
                 <h2 class="display-5">Внимание!</h2>
                 <p class="lead">Если у вас нет логина и пароля - Обратитесь к преподавателю</p>
             </div>
-            <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 80%; border-radius: 21px 21px 0 0;"><img src="http://bigproject.std-1055.ist.mospolytech.ru/img/book.png" alt="Здесь должен быть школьник" style="width: 75%; height: 75%";></div>
+            <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 80%; border-radius: 21px 21px 0 0;"><img src="/img/book.png" alt="Здесь должен быть школьник" style="width: 75%; height: 75%";></div>
         </div>
         <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 p-3">
@@ -202,14 +200,14 @@
     <footer class="container py-5">
         <div class="row">
             <div class="col-12 col-md">
-                <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/LogoMospolytech.jpg" alt="logo" width="24" height="24" class="round">
+                <img src="/img/LogoMospolytech.jpg" alt="logo" width="24" height="24" class="round">
                 <small class="d-block mb-3 text-muted">&copy; 2020 · Project · Ruslan</small>
                 <p>
-                    <a href="https://www.facebook.com/dnevnik.ru"> <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/social-links/facebook.png" width="26" height="26"></a>
-                    <a href="http://twitter.com/dnevnik_ru"> <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/social-links/twitter.png" width="26" height="26"></a>
-                    <a href="http://vkontakte.ru/club19853844"> <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/social-links/vkontakte.png" width="26" height="26"></a>
-                    <a href="http://www.odnoklassniki.ru/dnevnik.ru"> <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/social-links/odnoklassniki.png" width="26" height="26"></a>
-                    <a href="https://www.youtube.com/user/DnevnikVideoRussia"> <img src="http://bigproject.std-1055.ist.mospolytech.ru/img/social-links/youtube.png" width="26" height="26"></a>
+                    <a href="https://www.facebook.com/dnevnik.ru"> <img src="/img/social-links/facebook.png" width="26" height="26"></a>
+                    <a href="http://twitter.com/dnevnik_ru"> <img src="/img/social-links/twitter.png" width="26" height="26"></a>
+                    <a href="http://vkontakte.ru/club19853844"> <img src="/img/social-links/vkontakte.png" width="26" height="26"></a>
+                    <a href="http://www.odnoklassniki.ru/dnevnik.ru"> <img src="/img/social-links/odnoklassniki.png" width="26" height="26"></a>
+                    <a href="https://www.youtube.com/user/DnevnikVideoRussia"> <img src="/img/social-links/youtube.png" width="26" height="26"></a>
                 </p>
             </div>
             <div class="col-6 col-md">
