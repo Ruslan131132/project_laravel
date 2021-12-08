@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Pupil;
 
 class LoginController extends Controller
 {
@@ -19,6 +20,8 @@ class LoginController extends Controller
                 //Редирект на соответствующую страницу
             }
             if ($user['user_type'] == 'Ученик'){
+//                dd($user->pupil['name']);
+//                dd(Pupil::all()->first());
                 //Редирект на соответствующую страницу
             }
             return $user;
