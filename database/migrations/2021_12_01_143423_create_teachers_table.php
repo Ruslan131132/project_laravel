@@ -18,7 +18,7 @@ class CreateTeachersTable extends Migration
             $table->string('name', 255)->nullable(false);
             $table->string('surname', 255)->nullable(false);
             $table->string('patronymic', 255)->nullable(true);
-            $table->string('have_class', 255)->nullable(true)->change();
+            $table->string('has_class', 255)->nullable(true);
             $table->timestamps();
         });
     }
