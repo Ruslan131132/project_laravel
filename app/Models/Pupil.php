@@ -11,6 +11,21 @@ class Pupil extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id', 'user_id');
+        return $this->hasOne(User::class, 'user_id', 'id');
+    }
+
+    public function class()
+    {
+        return $this->belongsTo(ClassInfo::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsToMany(Course::class);
+    }
+
+    public function mark()
+    {
+        return $this->hasMany(Mark::class);
     }
 }

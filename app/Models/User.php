@@ -17,12 +17,12 @@ class User extends Authenticatable
 
     public function teacher()
     {
-        return $this->hasOne(Teacher::class);
+        return $this->belongsTo(Pupil::class, 'user_id', 'id');
     }
 
     public function pupil()
     {
-        return $this->hasOne(Pupil::class, 'id', 'user_id');
+        return $this->belongsTo(Pupil::class, 'user_id', 'id');
     }
     /**
      * The attributes that are mass assignable.

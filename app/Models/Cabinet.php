@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Cabinet extends Model
 {
     use HasFactory;
+    public function shedule()
+    {
+        return $this->hasMany(Shedule::class);
+    }
 }
