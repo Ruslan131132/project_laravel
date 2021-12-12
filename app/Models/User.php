@@ -17,7 +17,7 @@ class User extends Authenticatable
 
     public function teacher()
     {
-        return $this->belongsTo(Pupil::class, 'user_id', 'id');
+        return $this->belongsTo(Teacher::class, 'user_id', 'id');
     }
 
     public function pupil()

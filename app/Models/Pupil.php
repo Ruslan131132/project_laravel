@@ -21,7 +21,7 @@ class Pupil extends Model
 
     public function course()
     {
-        return $this->belongsToMany(Course::class);
+        return $this->belongsToMany(Course::class, 'pupils_courses');
     }
 
     public function mark()
