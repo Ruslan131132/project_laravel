@@ -1,4 +1,6 @@
 .bd-placeholder-img {
+    width: 250px;
+    height: 250px;
     font-size: 1.125rem;
     text-anchor: middle;
     -webkit-user-select: none;
@@ -11,12 +13,11 @@
 input {
     color: #000000;
 }
-@media screen and  (min-device-width: 767px) and (max-device-width: 1000px) {
-    .bd-placeholder-img {
-        width: 150px;
-        height: 150px;
-    }
+
+form {
+    margin-bottom: 15px;
 }
+
 @media screen and (max-device-width: 767px) {
     .bd-placeholder-img {
         width: 150px;

@@ -2,6 +2,10 @@ body {
     font-size: .875rem;
 }
 
+main {
+    padding-top: 15px;
+}
+
 .feather {
     width: 16px;
     height: 16px;
@@ -24,7 +28,7 @@ body {
     height: calc(100vh - 48px);
     padding-top: .5rem;
     overflow-x: hidden;
-    overflow-y: auto; /* Появление скролла ы случае если видимость короче контента. */
+    overflow-y: auto; /* Появление скролла в случае если видимость короче контента. */
 }
 
 a.nav-link:hover {
