@@ -12,7 +12,9 @@
 
 @section('content')
     <nav class="navbar sticky-top navbar-expand-md fixed-top ">
-        <a class="navbar-brand" href="#"><img src="/img/mospolytech-logo-white.png" alt="logo" width="20" height="20" class="round"></a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
+            <img src="/img/mospolytech-logo-white.png" alt="logo" width="20" height="20" class="round"> Дневник
+        </a>
         <button style="color: #999" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-caret-down-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M3.544 6.295A.5.5 0 0 1 4 6h8a.5.5 0 0 1 .374.832l-4 4.5a.5.5 0 0 1-.748 0l-4-4.5a.5.5 0 0 1-.082-.537z"/>
@@ -45,19 +47,21 @@
     </nav>
 
     <!-- Компонент для демонстрации информации -->
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-3">Дневник</h1>
-            <p>Добро пожаловать - Здесь вы можете следить за успеваемостью</p>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalPopoversWindow">Подробнее &raquo;</button>
-            <div id="ModalPopoversWindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalPopoversLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Дневник</h1>
+            <p class="col-md-8 fs-4">Добро пожаловать - Здесь вы можете следить за успеваемостью.</p>
+            <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#ModalInfo">Подробнее &raquo;</button>
+
+            <div id="ModalInfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalPopoversLabel" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalPopoversLabel">Информация</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{{--                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                                <span aria-hidden="true">×</span>--}}
+{{--                            </button>--}}
                         </div>
                         <div class="modal-body">
                             <p>«Электронный дневник и журнал» — сервис,
@@ -75,6 +79,7 @@
             </div>
         </div>
     </div>
+
     <br class="clearfix w-100 d-md-none pb-3">
     <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
         <div class="bg-light mr-md-3 py-3 px-3 py-md-5 px-md-3 text-center overflow-hidden">
@@ -83,19 +88,17 @@
                 <p class="lead">
                 </p>
             </div>
-            <div class="text-center">
-
-                <form class="form-signin" method="POST" action="{{ route('login') }}">
-                    @if(session('wrong'))
-                        <div class="alert alert-danger">
-                            {{ session('wrong') }}
-                        </div>
-                    @endif
+            <div class="form-signin">
+                <form method="POST" action="{{ route('login') }}">
                     @csrf
-                    <label for="user_id" class="sr-only">ID</label>
-                    <input type="number" name="user_id"  id="user_id" class="form-control" placeholder="ID" required autofocus>
-                    <label for="password" class="sr-only">Password</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="Пароль" required>
+                    <div class="form-floating">
+                        <input type="number" name="user_id"  id="user_id" class="form-control" placeholder="ID" required autofocus>
+                        <label for="user_id">ID</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Пароль" required>
+                        <label for="password">Пароль</label>
+                    </div>
                     <div class="checkbox mb-3">
                         <label>
                             <input type="checkbox" name="remember_token" value="1"> Запомнить меня
