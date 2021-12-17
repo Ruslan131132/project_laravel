@@ -15,7 +15,7 @@
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
             <img src="/img/mospolytech-logo-white.png" alt="logo" width="20" height="20" class="round"> Дневник
         </a>
-        <button style="color: #999" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button style="color: #999" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-caret-down-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M3.544 6.295A.5.5 0 0 1 4 6h8a.5.5 0 0 1 .374.832l-4 4.5a.5.5 0 0 1-.748 0l-4-4.5a.5.5 0 0 1-.082-.537z"/>
                 <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
@@ -24,10 +24,15 @@
         <div class="collapse navbar-collapse justify-content-md-center" id="navbarCollapse">
             <ul class="navbar-nav">
                 <li class="nav-item active">
+                    <a class="nav-link m-0 px-2">
+                        <img src="/img/mospolytech-logo-white.png" alt="logo" width="20" height="20" class="round">
+                    </a>
+                </li>
+                <li>
                     <a class="puple nav-link py-2" href="https://www.gosuslugi.ru/105551/2/info">Ученику</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="teacher nav-link " href="https://www.gosuslugi.ru/44300/2/info">Учителю</a>
+                    <a class="teacher nav-link" href="https://www.gosuslugi.ru/44300/2/info">Учителю</a>
                 </li>
                 <li class="nav-item active">
                     <a class="parent nav-link" href="https://www.gosuslugi.ru/help/news/2020_05_30_gosuslugi_family">Родителю</a>
@@ -47,7 +52,7 @@
     </nav>
 
     <!-- Компонент для демонстрации информации -->
-    <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="p-5 mb-3 bg-light rounded-3">
         <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold">Дневник</h1>
             <p class="col-md-8 fs-4">Добро пожаловать - Здесь вы можете следить за успеваемостью.</p>
@@ -59,9 +64,6 @@
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalPopoversLabel">Информация</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-{{--                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                                <span aria-hidden="true">×</span>--}}
-{{--                            </button>--}}
                         </div>
                         <div class="modal-body">
                             <p>«Электронный дневник и журнал» — сервис,
@@ -151,7 +153,7 @@
                 <h2 class="display-5">Олимпиада по математике</h2>
                 <p class="lead">Главные призы - новые iPhone, iPad и PS5 </p>
             </div>
-            <div class="bg-light shadow-sm mx-auto" style="width: 80%; height:80%; border-radius: 21px 21px 0 0;"><img id="prize_img" src="/img/Prize.jpg" alt="Здесь должен быть школьник" >
+            <div class="bg-light shadow-sm mx-auto" style="width: 80%; height:80%; border-radius: 21px 21px 0 0;"><img id="prize_img" src="/img/Prize.png" alt="Здесь должен быть школьник" >
             </div>
 
         </div>

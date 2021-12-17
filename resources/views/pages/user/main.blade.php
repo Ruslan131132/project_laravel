@@ -1,4 +1,3 @@
-{{--@extends('layouts.user-layout')--}}
 @extends('layouts.user-layout')
 
 @section('description', 'User main page')
@@ -66,14 +65,15 @@
                 @if(count($courses) != 0)
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Активных курсов</span>
-                    <span class="badge badge-success badge-pill">{{ count($courses) }}</span>
+{{--                    <span class="badge bg-dark rounded-pill">--}}
+                    <span class="badge bg-success rounded-pill">{{ count($courses) }}</span>
                 </h4>
                 @endif
                 <ul class="list-group mb-3">
                     @foreach($courses as $course)
                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                             <div>
-                                <h6 class="my-0">Курс «{{$courses->name}}»</h6>
+                                <h6 class="my-0">Курс «{{$course->name}}»</h6>
                                 <small class="text-muted">{{ date("d.m.y(h:i) ", strtotime(strval($course->created_at))) }}</small>
                             </div>
                         </li>

@@ -89,7 +89,6 @@
                 }
             ]
         };
-
         let chDonut = document.getElementById("chDonut");
         if (chDonut) {
             new Chart(chDonut, {

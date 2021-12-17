@@ -4,3 +4,4 @@
         {{ $value }}
     </a>
 </li>
+<hr class="mx-2">

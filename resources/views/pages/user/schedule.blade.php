@@ -5,95 +5,45 @@
 @section('title-block', 'Shedule')
 
 @section('li-blocks')
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('login') }}">
-            <span data-feather="home"></span>
-            Главная <span class="sr-only"></span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="{{ route('shedule') }}">
-            <span data-feather="file"></span>
-            Расписание <span class="sr-only">(current)</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('marks') }}">
-            <span data-feather="bar-chart-2"></span>
-            Оценки
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('courses') }}">
-            <span data-feather="shopping-cart"></span>
-            Записаться на курс
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('olimpiads') }}">
-            <span data-feather="users"></span>
-            Олимпиады
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('ege') }}">
-            <span data-feather="layers"></span>
-            ЕГЭ
-        </a>
-    </li>
+    @include('layouts.li', ['value' => 'Главная', 'status' => '', 'icon' => '/svg/home.svg', 'route' => 'user.main'])
+    @include('layouts.li', ['value' => 'Расписание', 'status' => 'active', 'icon' => '/svg/schedule.svg', 'route' => 'user.schedule'])
+    @include('layouts.li', ['value' => 'Оценки', 'status' => '', 'icon' => '/svg/marks.svg', 'route' => 'user.marks'])
+    @include('layouts.li', ['value' => 'Курсы', 'status' => '', 'icon' => '/svg/class.svg', 'route' => 'user.courses'])
+    @include('layouts.li', ['value' => 'Олимпиады', 'status' => '', 'icon' => '/svg/globe.svg', 'route' => 'user.olimps'])
+    @include('layouts.li', ['value' => 'Экзамены', 'status' => '', 'icon' => '/svg/exam.svg', 'route' => 'user.exams'])
 @endsection
 
 @section('content')
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Расписание</h1>
-        </div>
-        @php
-            $days = array(1 => 'Monday', 2 => 'Tuesday', 3 => 'Wednesday', 4 => 'Thursday', 5 => 'Friday', 6 => 'Saturday');
-        @endphp
-        <div class="row">
-            @foreach( $days as $i => $value)
-                <div class="col-md-2 mb-4">
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
-		        <span class="text-muted" style="padding-top: 20px;">
-		          {{($i==1) ? 'Пн' : ''}}
-                    {{($i==2) ? 'Вт' : ''}}
-                    {{($i==3) ? 'Ср' : ''}}
-                    {{($i==4) ? 'Чт' : ''}}
-                    {{($i==5) ? 'Пт' : ''}}
-                    {{($i==6) ? 'Сб' : ''}}
-				</span>
-                    </h4>
-                    <ul class="list-group mb-3">
-                        @php $index = 0; @endphp
-                        @foreach($data as $el)
-                            @if ( $el->Day_Number == $i)
-                                @php $index++; @endphp
-                                <li class="list-group-item d-flex justify-content-between lh-condensed"
-                                    @php
-                                        if( $today > $el->Start_Time && $today < $el->End_Time && $value==$day)
-                                            echo 'style="color: #155724; background-color: #d4edda; border-color: #c3e6cb;"';
-                                        else
-                                            echo '';
-                                    @endphp
-                                >
-                                    <div>
-                                        <h6 class="my-0">{{$el->Name}}</h6>
-                                        <small class="text-muted time">
-                                            @php
-                                                $start_time = mb_substr($el->Start_Time,0,5);
-                                                $end_time = mb_substr($el->End_Time,0,5);
-                                            @endphp
-                                            {{$start_time}}-{{$end_time}}
-                                        </small>
-                                    </div>
-                                    <span class="text-muted" style="padding-top: 20px;">Каб.{{$el-> Cabinet_Id}}</span>
-                                </li>
-                            @endif
-                        @endforeach
-                    </ul>
-                </div>
-            @endforeach
-        </div>
-    </main>
+    <div class="row">
+        @foreach($days as $day)
+            <div class="col-sm-6 order-sm-{{ $day->diary_number }} px-md-4">
+                <h4 class="d-flex justify-content-between align-items-center" style="border: 1px solid #dfdfdf; margin-bottom: -3px; padding: 15px; border-radius: 3px;">
+                    <span>{{ $day->name }}</span>
+                    <span class="badge bg-dark rounded-pill">{{ count($schedule->where('day_number', $day->number)) }}</span>
+                </h4>
+                <ul class="list-group mb-3">
+                    @foreach($schedule->where('day_number', $day->number) as $info)
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="mb-3">{{ $info->lesson_number.') '.$info->subject->name }}</h6>
+                                <span class="text-muted mt-2">
+                                    {{ substr($info->lesson->start_time, 0, -3).'-'.substr($info->lesson->end_time, 0, -3) }}
+                                </span>
+                            </div>
+                            <span class="text-muted">
+                                <p>каб. {{ $info->cabinet->name }}</p>
+                                <p>
+                                    @if(Auth::user()->user_type == 'Учитель')
+                                        {{ 'Класс: '.$info->class->name }}
+                                    @else
+                                        {{ 'препод' }}
+                                    @endif
+                                </p>
+                            </span>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endforeach
+    </div>
 @endsection

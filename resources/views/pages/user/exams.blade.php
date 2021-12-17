@@ -9,46 +9,16 @@
 @endsection
 
 @section('li-blocks')
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('login') }}">
-            <span data-feather="user"></span>
-            Главная <span class="sr-only"></span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('shedule') }}">
-            <span data-feather="shedule"></span>
-            Расписание
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('marks') }}">
-            <span data-feather="marks"></span>
-            Оценки
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link " href="{{ route('courses') }}">
-            <span data-feather="courses"></span>
-            Записаться на курс
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('olimpiads') }}">
-            <span data-feather="users"></span>
-            Олимпиады
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="{{ route('ege') }}">
-            <span data-feather="layers"></span>
-            ЕГЭ
-        </a>
-    </li>
+    @include('layouts.li', ['value' => 'Главная', 'status' => '', 'icon' => '/svg/home.svg', 'route' => 'user.main'])
+    @include('layouts.li', ['value' => 'Расписание', 'status' => '', 'icon' => '/svg/schedule.svg', 'route' => 'user.schedule'])
+    @include('layouts.li', ['value' => 'Оценки', 'status' => '', 'icon' => '/svg/marks.svg', 'route' => 'user.marks'])
+    @include('layouts.li', ['value' => 'Курсы', 'status' => '', 'icon' => '/svg/class.svg', 'route' => 'user.courses'])
+    @include('layouts.li', ['value' => 'Олимпиады', 'status' => '', 'icon' => '/svg/globe.svg', 'route' => 'user.olimps'])
+    @include('layouts.li', ['value' => 'Экзамены', 'status' => 'active', 'icon' => '/svg/exam.svg', 'route' => 'user.exams'])
 @endsection
 
 @section('content')
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" link="#000000">
+    <div class="container">
         <section class="jumbotron text-center" style="margin-top: 2rem;">
             <div class="container">
                 <h1>Подготовка к Экзаменам</h1>
@@ -146,5 +116,5 @@
         <footer class="container">
             <p style="text-align: right;">&copy; 2020 Московский Политехнический Университет · Курсы · Дневник</p>
         </footer>
-    </main>
+    </div>
 @endsection

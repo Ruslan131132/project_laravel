@@ -9,42 +9,12 @@
 @endsection
 
 @section('li-blocks')
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('login') }}">
-            <span data-feather="home"></span>
-            Главная <span class="sr-only"></span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('shedule') }}">
-            <span data-feather="file"></span>
-            Расписание
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="{{ route('marks') }}">
-            <span data-feather="bar-chart-2"></span>
-            Оценки <span class="sr-only">(current)</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('courses') }}">
-            <span data-feather="shopping-cart"></span>
-            Записаться на курс
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('olimpiads') }}">
-            <span data-feather="users"></span>
-            Олимпиады
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('ege') }}">
-            <span data-feather="layers"></span>
-            ЕГЭ
-        </a>
-    </li>
+    @include('layouts.li', ['value' => 'Главная', 'status' => '', 'icon' => '/svg/home.svg', 'route' => 'user.main'])
+    @include('layouts.li', ['value' => 'Расписание', 'status' => '', 'icon' => '/svg/schedule.svg', 'route' => 'user.schedule'])
+    @include('layouts.li', ['value' => 'Оценки', 'status' => 'active', 'icon' => '/svg/marks.svg', 'route' => 'user.marks'])
+    @include('layouts.li', ['value' => 'Курсы', 'status' => '', 'icon' => '/svg/class.svg', 'route' => 'user.courses'])
+    @include('layouts.li', ['value' => 'Олимпиады', 'status' => '', 'icon' => '/svg/globe.svg', 'route' => 'user.olimps'])
+    @include('layouts.li', ['value' => 'Экзамены', 'status' => '', 'icon' => '/svg/exam.svg', 'route' => 'user.exams'])
 @endsection
 
 @section('content')

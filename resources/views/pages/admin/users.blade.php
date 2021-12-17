@@ -27,70 +27,69 @@
             <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
                 <h3 class="pb-2 border-bottom">Регистрация пользователя</h3>
             </div>
-            <div>
-                <div class="bd-example">
-                    <form class="form" method="POST" action="{{ route('admin.create-user') }}">
-                        @csrf
-                        <div class="form-group">
-                            <div class="row mb-3">
-                                <div class="col-md-3 themed-grid-col">
-                                    <label for="user_id">ID</label>
-                                    <input type="number" name="user_id" id="user_id" class="form-control" placeholder="ID" max="2147483647" min="1000000000" required autofocus />
-                                </div>
-                                <div class="col-md-3 themed-grid-col">
-                                    <label for="surname">Фамилия</label>
-                                    <input type="text" name="surname" class="form-control" id="surname" placeholder="Введите Фамилию..." required />
-                                </div>
-                                <div class="col-md-3 themed-grid-col">
-                                    <label for="name">Имя</label>
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Введите Имя..." required />
-                                </div>
-                                <div class="col-md-3 themed-grid-col">
-                                    <label for="patronymic">Отчество</label>
-                                    <input type="text" name="patronymic" class="form-control" id="patronymic" placeholder="Введите Отчество..." />
-                                </div>
+            <div class="bd-example">
+                <form class="form" method="POST" action="{{ route('admin.create-user') }}">
+                    @csrf
+                    <div class="form-group">
+                        <div class="row mb-3">
+                            <div class="col-md-3 themed-grid-col">
+                                <label for="user_id">ID</label>
+                                <input type="number" name="user_id" id="user_id" class="form-control" placeholder="ID" max="2147483647" min="1000000000" required autofocus />
+                            </div>
+                            <div class="col-md-3 themed-grid-col">
+                                <label for="surname">Фамилия</label>
+                                <input type="text" name="surname" class="form-control" id="surname" placeholder="Введите Фамилию..." required />
+                            </div>
+                            <div class="col-md-3 themed-grid-col">
+                                <label for="name">Имя</label>
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Введите Имя..." required />
+                            </div>
+                            <div class="col-md-3 themed-grid-col">
+                                <label for="patronymic">Отчество</label>
+                                <input type="text" name="patronymic" class="form-control" id="patronymic" placeholder="Введите Отчество..." />
                             </div>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <div class="row mb-3">
-                                <div class="col-md-1 themed-grid-col">
-                                    <label for="Class_name">Класс</label>
-                                    <select class="form-control" id="class_name" name="class_name" required>
-                                        @foreach($classes as $class)
-                                            <option value="{{$class->id}}">{{ $class->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-2 themed-grid-col">
-                                    <label for="user_type">Тип</label>
-                                    <select class="form-control" name="user_type" id="user_type" required>
-                                        <option selected>Ученик</option>
-                                        <option>Учитель</option>
-                                    </select>
-                                </div>
+                    <div class="form-group">
+                        <div class="row mb-3">
+                            <div class="col-md-1 themed-grid-col">
+                                <label for="Class_name">Класс</label>
+                                <select class="form-control" id="class_name" name="class_name" required>
+                                    @foreach($classes as $class)
+                                        <option value="{{$class->id}}">{{ $class->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-2 themed-grid-col">
+                                <label for="user_type">Тип</label>
+                                <select class="form-control" name="user_type" id="user_type" required>
+                                    <option selected>Ученик</option>
+                                    <option>Учитель</option>
+                                </select>
+                            </div>
 
-                                <div class="password col-md-3 themed-grid-col">
-                                    <label for="password">Пароль</label>
-                                    <input id="password" type="password" class="form-control" name="password" required />
-                                    <a class="password-control" onclick="return show_hide_password(this);"></a>
-                                </div>
-                                <div class="col-md-3 themed-grid-col">
-                                    <label for="email">E-Mail</label>
-                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required />
-                                </div>
-                                <div class="col-md-3 themed-grid-col">
-                                    <label for="address">Адрес</label>
-                                    <input type="text" name="Address" id="Address" class="form-control" placeholder="Введите адрес(только для ученика)" required autofocus />
-                                </div>
+                            <div class="password col-md-3 themed-grid-col">
+                                <label for="password">Пароль</label>
+                                <input id="password" type="password" class="form-control" name="password" required />
+                                <a class="password-control" onclick="return show_hide_password(this);"></a>
+                            </div>
+                            <div class="col-md-3 themed-grid-col">
+                                <label for="email">E-Mail</label>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required />
+                            </div>
+                            <div class="col-md-3 themed-grid-col">
+                                <label for="address">Адрес</label>
+                                <input type="text" name="Address" id="Address" class="form-control" placeholder="Введите адрес(только для ученика)" required autofocus />
                             </div>
                         </div>
-                        <div class="col">
-                            <button class="btn btn-lg btn-success btn-block" type="submit">
-                                Зарегистрировать
-                            </button>
-                        </div>
-                    </form>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-lg btn-success btn-block" type="submit">
+                            Зарегистрировать
+                        </button>
+                    </div>
+                </form>
 {{--                    <form class="row g-3">--}}
 {{--                        <div class="col-md-4">--}}
 {{--                            <label for="validationServer01" class="form-label">First name</label>--}}
@@ -155,12 +154,11 @@
 {{--                            <button class="btn btn-primary" type="submit">Submit form</button>--}}
 {{--                        </div>--}}
 {{--                    </form>--}}
-                </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="bd-heading align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2 pt-5">
+            <div class="bd-heading align-self-start mt-3 mb-3 mt-xl-0 mb-xl-2 pt-5">
                 <h3>Список пользователей</h3>
             </div>
             <div class="nav nav-tabs mb-3 px-0" id="nav-tab" role="tablist" >
@@ -169,7 +167,6 @@
                 <button class="nav-link" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Все</button>
                 <input class="nav-link me-0 m-auto" type="search" placeholder="Поиск.." aria-label="Search" style="border-color: #e9ecef #e9ecef transparent #dee2e6; isolation: isolate;"/>
                 <a class="search-control" onclick="return show_hide_password(this);"></a>
-
             </div>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-teachers" role="tabpanel" aria-labelledby="nav-home-tab">

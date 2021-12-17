@@ -5,116 +5,61 @@
 @section('title-block', 'Create Shedule')
 
 @section('li-blocks')
-    <li class="nav-item">
-        <a class="nav-link " href="{{ route('admin') }}">
-            <span data-feather="home"></span>
-            Создать пользователя
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('createClass') }}">
-            <span data-feather="file"></span>
-            Создать класс
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('createSubject') }}">
-            <span data-feather="file"></span>
-            Создать предмет
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="{{ route('createEmployment') }}">
-            <span data-feather="file"></span>
-            Создать занятость
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="{{ route('createShedule') }}" style="color: #ffffff">
-            <span data-feather="file"></span>
-            Создать расписание<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
-                <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
-            </svg><span class="sr-only">(current)</span>
-        </a>
-    </li>
+    @include('layouts.li', ['value' => 'Главная', 'status' => '', 'icon' => '/svg/home.svg', 'route' => 'admin.main'])
+    @include('layouts.li', ['value' => 'Пользователи', 'status' => '', 'icon' => '/svg/users.svg', 'route' => 'admin.users'])
+    @include('layouts.li', ['value' => 'Классы', 'status' => '', 'icon' => '/svg/class.svg', 'route' => 'admin.classes'])
+    @include('layouts.li', ['value' => 'Предметы', 'status' => '', 'icon' => '/svg/book.svg', 'route' => 'admin.subjects'])
+    @include('layouts.li', ['value' => 'Занятость', 'status' => '', 'icon' => '/svg/employment.svg', 'route' => 'admin.employment'])
+    @include('layouts.li', ['value' => 'Расписание', 'status' => 'active', 'icon' => '/svg/schedule.svg', 'route' => 'admin.schedule'])
 @endsection
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <div class="multi-collapse justify-content-md-center collapse show" id="collapseCreateUser">
-                    <div class="card card-body" id="card">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Создание/обновление расписания</h5>
-                                <button type="button" class="close" data-toggle="collapse" href="#collapseCreateUser" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form-inline" method="POST" action="{{ route('createShed') }}">
-                                    @csrf
-                                    <div class="form-group mx-sm-3 mb-2">
-                                        <label for="Class_Name">Класс:&nbsp;</label>
-                                        <select class="form-control" id="Class_Name" name="Class_Name" required>
-                                            @foreach($classes as $class)
-                                                <option>{{ $class->Name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>&nbsp;
-                                    <div class="form-group mx-sm-3 mb-2">
-                                        <label for="Day_Number">День недели:&nbsp;</label>
-                                        <select class="form-control" id="Day_Number" name="Day_Number" required>
-                                            <option selected>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                        </select>
-                                    </div>&nbsp;
-                                    <div class="form-group mx-sm-3 mb-2">
-                                        <label for="Lesson_Number">Номер урока:&nbsp;</label>
-                                        <select class="form-control" id="Lesson_Number" name="Lesson_Number" required>
-                                            <option selected>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                        </select>
-                                    </div>&nbsp;
-                                    <div class="form-group mx-sm-3 mb-2">
-                                        <label for="Subject_Name">Предмет:&nbsp;</label>
-                                        <select class="form-control" id="Subject_Name" name="Subject_Name" required>
-                                            @foreach($subjects as $subject)
-                                                <option>{{ $subject->Name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>&nbsp;
-                                    <div class="form-group mx-sm-3 mb-2">
-                                        <label for="Cabinet_Number">Кабинет:&nbsp;</label>
-                                        <select class="form-control" id="Cabinet_Number" name="Cabinet_Number" required>
-                                            @foreach($cabinets as $cabinet)
-                                                <option>{{ $cabinet->Name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>&nbsp;
-                                    <button type="submit" class="btn btn-success mb-2">Добавить запись</button>
-                                </form>
-                                <p>Предупреждения:<br/>
-                                    Если в указанный день в указанный урок кабинет занят другим классом - запись добавить не получится.<br/>
-                                    Если в указанный день в указанный урок у выбранного класса уже есть урок - запись об этом классе в расписании обновится.<br/>
-                                    Если записи в БД в указанный день в указанный урок у выбранного класса нет - запись добавится в БД.
-                                </p>
-                            </div>
+    <div class="row">
+        <div class="bd-heading sticky-xl-top align-self-start mt-3 mb-3 mt-xl-0 mb-xl-2">
+            <div class="row border-bottom justify-content-between">
+                <div class="col-auto">
+                    <h3 class="pb-2 ">Расписание</h3>
+                </div>
+                <div class="col-auto">
+                    <div class="row g-3 d-print-inline">
+                        <div class="col-auto">
+                            <label for="class_name" class="col-form-label">Класс:&nbsp;</label>
+                        </div>
+                        <div class="col-auto">
+                            <form method="POST" action="{{ route('admin.schedule') }}">
+                                @csrf
+                                <select class="form-control" id="class_id" name="class_id" width="50px" required onChange="this.form.submit()">
+                                    @foreach($classes ?? '' as $class)
+                                        <option value="{{ $class->id }}" {{ $class->id == $current_class_id ? 'selected' : '' }}>{{ $class->name }}</option>
+                                    @endforeach
+                                </select>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
+        @foreach($days as $day)
+            <div class="col-sm-6 order-sm-{{ $day->diary_number }} px-md-4">
+                <h4 class="d-flex justify-content-between align-items-center" style="border: 1px solid #dfdfdf; margin-bottom: -3px; padding: 15px; border-radius: 3px;">
+                    <span>{{ $day->name }}</span>
+                    <span class="badge bg-dark rounded-pill">{{ count($schedule->where('day_number', $day->number)) }}</span>
+                </h4>
+                <ul class="list-group mb-3">
+                    @foreach($schedule->where('day_number', $day->number) as $info)
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">{{ $info->subject->name }}</h6>
+                                <small class="text-muted">преподаватель</small>
+                            </div>
+                            <span class="text-muted my-auto">каб. {{ $info->cabinet->name }}</span>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endforeach
     </div>
 @endsection
 
