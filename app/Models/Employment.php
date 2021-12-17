@@ -14,7 +14,7 @@ class Employment extends Model
     }
     public function subject()
     {
-        return $this->belongsTo(Sublect::class);
+        return $this->belongsTo(Subject::class);
     }
     public function class()
     {

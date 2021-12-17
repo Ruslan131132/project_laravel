@@ -12,11 +12,11 @@ class ClassInfo extends Model
 
     public function pupils()
     {
-        return $this->hasMany(Pupil::class);
+        return $this->hasMany(Pupil::class, 'id', 'pupil_id');
     }
     public function teacher()
     {
-        return $this->hasOne(Teacher::class);
+        return $this->hasOne(Teacher::class, 'id', 'teacher_id');
     }
     public function employment()
     {
