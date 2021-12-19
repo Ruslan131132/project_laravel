@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Pupil extends Model
 {
@@ -27,5 +28,10 @@ class Pupil extends Model
     public function mark()
     {
         return $this->hasMany(Mark::class);
+    }
+
+    public function hasCourse($id): bool
+    {
+        return count(Auth::user()->pupil->course->where('id', $id)) != 0;
     }
 }
