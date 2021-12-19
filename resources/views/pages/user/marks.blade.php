@@ -18,110 +18,99 @@
 @endsection
 
 @section('content')
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-        @if($User_Type=="Учитель")
-            @php
-                $classes = [];
-                $subjects = [];
-                foreach ($classes_subjects as $key) {
-                  $classes[] = $key->className;
-                  $subjects[] = $key->subjectName;
-                }
-                $classes_unique = array_unique($classes);
-                $subjects_unique = array_unique($subjects);
-            @endphp
-            <div class="row pt-3 pb-2 mb-3" style="text-align: center">
-                <div class="col-4" >
-                    <h1 class="h3">Журнал</h1>
+
+    <div class="container">
+        <div class="bd-heading sticky-xl-top align-self-start mt-3 mb-3 mt-xl-0 mb-xl-2 mb-2">
+            <div class="row border-bottom justify-content-between">
+                <div class="col-6">
+                    <h3 class="pb-2 ">Оценки</h3>
                 </div>
-                <div class="col-4">
-                    <form class="form-inline">
-                        <label for="classes"><h1 class="h3">Класс:</h1></label>
-                        <select class="choose form-control" id="classes" >
-                            @foreach($classes_unique as $class)
-                                <option
-                                    @php
-                                        if(Session::has('teachers_class') && Session::get('teachers_class', 0) == $class){
-                                            echo "selected";
-                                        }else{
-                                            if($classes_subjects[0]->className == $class)
-                                                echo "selected";
-                                        }
-                                    @endphp
-                                >{{ $class }}</option>
-                            @endforeach
-                        </select>
-                    </form>
-                </div>
-                <div class="col-4">
-                    <form class="form-inline">
-                        <label for="subjects"><h1 class="h3">Предмет:</h1></label>
-                        <select class="choose form-control" id="subjects" >
-                            @foreach($subjects_unique as $subject)
-                                <option
-                                    @php
-                                        if(Session::has('teachers_subject') && Session::get('teachers_subject', 0) == $subject){
-                                            echo "selected";
-                                        }else{
-                                            if($classes_subjects[0]->subjectName == $subject)
-                                                echo "selected";
-                                        }
-                                    @endphp
-                                >{{ $subject }}</option>
-                            @endforeach
-                        </select>
-                    </form>
-                </div>
+                @if(Auth::user()->user_type == 'Учитель')
+                    <div class="col-6">
+                        <form class="row g-3 d-print-inline" method="POST" action="{{ route('user.marks') }}">
+                            @csrf
+                            <div class="col-auto">
+                                <label for="class_name" class="col-form-label">Класс:&nbsp;</label>
+                            </div>
+                            <div class="col-auto">
+                                <select class="form-control" id="class_id" name="class_id" width="50px" required onChange="this.form.submit()">
+                                    @foreach($classes_info as $info)
+                                        <option value="{{ $info->class_id }}" {{ $info->class_id == $current_class_id ? 'selected' : '' }}>{{ $info->class->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <label for="class_name" class="col-form-label">Предмет:&nbsp;</label>
+                            </div>
+                            <div class="col-auto">
+                                <select class="form-control" id="subject_id" name="subject_id" width="100px" required onChange="this.form.submit()">
+                                    @foreach($subjects_info ?? '' as $info)
+                                        <option value="{{ $info->subject_id }}" {{ $info->subject_id == $current_subject_id ? 'selected' : '' }}>{{ $info->subject->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                @endif
             </div>
-        @endif
+        </div>
         <div class="table-responsive mt-4">
             <table class="table table-striped table-hover table-bordered table-sm" style="text-align: center;">
-                @if($User_Type=="Учитель")
+                @php
+                    $full_select = 0;
+                    $average_score = 0;
+                @endphp
+                @if(Auth::user()->user_type == 'Учитель')
                     <thead>
-                    <tr>
-                        <th scope="col" style="width:20%;">ФИО ученика</th>
-                        <th scope="col">Оценки</th>
-                        <th scope="col" style="width:10%;">Ср. балл</th>
-                    </tr>
+                        <tr>
+                            <th scope="col" style="width:20%;">ФИО ученика</th>
+                            <th scope="col">Оценки</th>
+                            <th scope="col" style="width:10%;">Ср. балл</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    @php
-                        $full_select = 0;
-                        $average_score = 0;
-                    @endphp
-                    @foreach($row as $pupil)
+                    @foreach($pupils as $pupil)
                         @php
                             $full_select = 0;
                             $average_score = 0;
                         @endphp
                         <tr>
-                            <th scope="col-md-3 col-lg-2">{{$pupil->Surname}} {{$pupil->Name}} {{$pupil->Patronymic}}</th>
+                            <th scope="col-md-3 col-lg-2">{{ $pupil->surname.' '.$pupil->name.' '.$pupil->patronymic }}</th>
                             <td>
-                                @foreach($class_marks as $el)
-                                    @if($pupil->Id == $el->Pupil_Id)
-                                        <select title="{{$el->Updated_at}}" id='{{$el->markId}}' data-pupil_id='{{$el->Pupil_Id}}' data-subject_id='{{$el->Subject_Id}}' class="marks">
-                                            <option> </option>
-                                            <option {{($el->Mark==1) ? 'selected' : ''}}>1</option>
-                                            <option {{($el->Mark==2) ? 'selected' : ''}}>2</option>
-                                            <option {{($el->Mark==3) ? 'selected' : ''}}>3</option>
-                                            <option {{($el->Mark==4) ? 'selected' : ''}}>4</option>
-                                            <option {{($el->Mark==5) ? 'selected' : ''}}>5</option>
-                                        </select>
+                                @foreach($marks_info as $info)
+                                    @if($pupil->id == $info->pupil_id)
+                                        <form method="POST" action="{{ route('user.change-mark') }}" style="display: inherit; padding: 2px;">
+                                            @csrf
+                                            <input type="hidden" value="{{$info->id}}" name="id" />
+                                            <input type="hidden" value="{{$pupil->id}}" name="pupil_id" />
+                                            <select name="mark" class="marks" title="{{'Добавлена: '.$info->created_at.'; Обновлена: '.$info->created_at}}" id='{{$info->id}}' data-pupil_id='{{$info->pupil_id}}' data-subject_id='{{$info->subject_id}}'  onChange="this.form.submit()">
+                                                <option></option>
+                                                <option {{($info->mark==1) ? 'selected' : ''}}>1</option>
+                                                <option {{($info->mark==2) ? 'selected' : ''}}>2</option>
+                                                <option {{($info->mark==3) ? 'selected' : ''}}>3</option>
+                                                <option {{($info->mark==4) ? 'selected' : ''}}>4</option>
+                                                <option {{($info->mark==5) ? 'selected' : ''}}>5</option>
+                                            </select>
+                                        </form>
                                         @php
-                                            $average_score += $el->Mark;
+                                            $average_score += $info->mark;
                                             $full_select++;
                                         @endphp
                                     @endif
                                 @endforeach
                                 @for($m = 0; $m < 33 - $full_select; $m++)
-                                    <select data-pupil_id='{{$pupil->Id}}' data-subject_id='{{$choosed_subject[0]->Id}}' class="marks">
-                                        <option selected> </option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
+                                    <form method="POST" action="{{ route('user.add-mark') }}" style="display: inherit; padding: 2px;">
+                                        @csrf
+                                        <input type="hidden" value="{{$pupil->id}}" name="pupil_id" />
+                                        <select data-pupil_id='{{$pupil->id}}' name="mark" data-subject_id='{{$current_subject_id}}' class="marks" onChange="this.form.submit()">
+                                            <option selected></option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </form>
                                 @endfor
 
                             </td>
@@ -129,56 +118,58 @@
                         </tr>
                     @endforeach
                     </tbody>
-                @endif
-                @if($User_Type=="Ученик")
+                @else
                     <thead>
-                    <tr>
-                        <th scope="col" style="width:20%;">Предметы</th>
-                        <th scope="col">Оценки</th>
-                        <th scope="col" style="width:10%;">Ср. балл</th>
-                    </tr>
+                        <tr>
+                            <th scope="col-2" >Предмет</th>
+                            <th scope="col-9">Оценки</th>
+                            <th scope="col-1" style="width:10%;">Ср. балл</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    @php
-                        $full_select = 0;
-                        $average_score = 0;
-                    @endphp
-                    @foreach($row as $subject)
-                        @php
-                            $full_select = 0;
-                            $average_score = 0;
-                        @endphp
-                        <tr>
-                            <th scope="col-md-3 col-lg-2">{{$subject->Name}}</th>
-                            <td>
-                                @foreach($class_marks as $el)
-                                    @if($subject->Id == $el->subId)
-                                        <select disabled title="{{$el->Updated_at}}" class="marks">
-                                            <option selected>{{$el->Mark}}</option>
+                        @foreach($subjects_info as $subject_info)
+                            @php
+                                $full_select = 0;
+                                $average_score = 0;
+                            @endphp
+                            <tr>
+                                <th scope="col-md-3 col-lg-2">{{ $subject_info->subject->name }}</th>
+                                <td>
+                                    @foreach($marks_info as $info)
+                                        @if($subject_info->subject_id == $info->subject_id)
+                                            <select class="marks" disabled title="{{'Добавлена: '.$info->created_at.'; Обновлена: '.$info->created_at}}" >
+                                                <option selected>{{$info->mark}}</option>
+                                            </select>
+                                            @php
+                                                $full_select++;
+                                                $average_score += $info->mark
+                                            @endphp
+                                        @endif
+                                    @endforeach
+
+                                    @for($m = 0; $m < 33 - $full_select; $m++)
+                                        <select disabled class="marks">
+                                            <option selected> </option>
                                         </select>
-                                        @php
-                                            $full_select++;
-                                            $average_score += $el->Mark;
-                                        @endphp
-                                    @endif
-                                @endforeach
-                                @for($m = 0; $m < 33 - $full_select; $m++)
-                                    <select disabled class="marks">
-                                        <option selected> </option>
-                                    </select>
-                                @endfor
-                            </td>
-                            <td>{{($average_score==0) ? 0 : round($average_score/$full_select, 2)}}</td>
-                        </tr>
-                    @endforeach
+                                    @endfor
+
+                                </td>
+                                <td>{{($average_score==0) ? 0 : round($average_score/$full_select, 2)}}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 @endif
             </table>
         </div>
-    </main>
+{{--    </main>--}}
 @endsection
 
 
 @section('scripts')
     <script src="/js/user-marks.js"></script>
+    <script>
+        function getInfo(selectObject){
+            console.log(selectObject.value);
+        }
+    </script>
 @endsection
