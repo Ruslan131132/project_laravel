@@ -20,9 +20,14 @@ Route::name('user.')->group(function(){
     Route::get('/main',  [\App\Http\Controllers\User\MainController::class, 'index'])->middleware('auth')->name('main');
     Route::get('/schedule',  [\App\Http\Controllers\User\ScheduleController::class, 'index'])->middleware('auth')->name('schedule');
     Route::get('/marks',  [\App\Http\Controllers\User\MarksController::class, 'index'])->middleware('auth')->name('marks');
+    Route::post('/marks',  [\App\Http\Controllers\User\MarksController::class, 'changeFilter'])->middleware('auth')->name('marks');
+    Route::post('/change-mark',  [\App\Http\Controllers\User\MarksController::class, 'changeMark'])->middleware('auth')->name('change-mark');
+    Route::post('/add-mark',  [\App\Http\Controllers\User\MarksController::class, 'addMark'])->middleware('auth')->name('add-mark');
     Route::get('/courses',  [\App\Http\Controllers\User\CoursesController::class, 'index'])->middleware('auth')->name('courses');
     Route::view('/olimpiads',  'pages.user.olimpiads')->middleware('auth')->middleware('auth')->name('olimps');
     Route::view('/exams',  'pages.user.exams')->middleware('auth')->middleware('auth')->name('exams');
+
+
 });
 
 Route::name('admin.')->group(function(){
