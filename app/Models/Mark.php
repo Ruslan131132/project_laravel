@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mark extends Model
 {
     use HasFactory;
+    protected $fillable = ['mark', 'pupil_id', 'subject_id'];
     public function pupil()
     {
         return $this->belongsTo(Pupil::class);
