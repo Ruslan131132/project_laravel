@@ -4,22 +4,6 @@
 
 @section('title-block', 'Create Class')
 
-@section('styles')
-    <style>
-        .form-inline .form-control {
-            display: inline-block;
-            width: auto;
-            vertical-align: middle;
-        }
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        .mat-icon:hover {
-            cursor: pointer;
-        }
-    </style>
-@endsection
-
 @section('li-blocks')
     @include('layouts.li', ['value' => 'Главная', 'status' => '', 'icon' => '/svg/home.svg', 'route' => 'admin.main'])
     @include('layouts.li', ['value' => 'Пользователи', 'status' => '', 'icon' => '/svg/users.svg', 'route' => 'admin.users'])
