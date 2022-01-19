@@ -6,6 +6,10 @@ main {
     padding-top: 15px;
 }
 
+textarea:focus, input:focus{
+    outline: none;
+}
+
 .feather {
     width: 16px;
     height: 16px;
@@ -99,6 +103,16 @@ a.nav-link:hover {
 
 #exit-mobile-screen{
     display: none;
+}
+
+.mat-icon:hover {
+    cursor: pointer;
+}
+
+.form-inline .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
 }
 
 @media screen and (max-device-width: 767px) {
