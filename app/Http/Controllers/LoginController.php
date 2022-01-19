@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Pupil;
 
 class LoginController extends Controller
 {
@@ -16,6 +15,6 @@ class LoginController extends Controller
             }
             return redirect(route('user.main'));
         }
-        return redirect(route('index'));
+        return redirect()->back()->with('error_auth', 'Неверный логин или пароль!');
     }
 }
