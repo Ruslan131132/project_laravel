@@ -26,24 +26,35 @@ Route::name('user.')->group(function(){
     Route::get('/courses',  [\App\Http\Controllers\User\CoursesController::class, 'index'])->middleware('auth')->name('courses');
     Route::view('/olimpiads',  'pages.user.olimpiads')->middleware('auth')->middleware('auth')->name('olimps');
     Route::view('/exams',  'pages.user.exams')->middleware('auth')->middleware('auth')->name('exams');
-
-
 });
 
 Route::name('admin.')->group(function(){
-    Route::view('/admin-main', 'pages.admin.main')->middleware('auth')->middleware('admin')->name('main');
+
+    /*Маршруты для страницы "Главная"*/
+    Route::get('/admin-main', [\App\Http\Controllers\Admin\MainController::class, 'index'])->middleware('auth')->middleware('admin')->name('main');
+
+    /*Маршруты для страницы "Пользователи"*/
     Route::get('/admin-users', [\App\Http\Controllers\Admin\UsersController::class, 'index'])->middleware('auth')->middleware('admin')->name('users');
-    Route::get('/admin-classes',  [\App\Http\Controllers\Admin\ClassesController::class, 'index'])->middleware('auth')->middleware('admin')->name('classes');
-    Route::get('/admin-subjects',  [\App\Http\Controllers\Admin\SubjectsController::class, 'index'])->middleware('auth')->middleware('admin')->name('subjects');
-    Route::get('/admin-employment',  [\App\Http\Controllers\Admin\EmploymentController::class, 'index'])->middleware('auth')->middleware('admin')->name('employment');
-    //Route::view('/admin-schedule-page',  'pages.admin.schedule')->middleware('auth')->middleware('admin')->name('schedule-page');
-
-    Route::get('/admin-schedule',  [\App\Http\Controllers\Admin\ScheduleController::class, 'index'])->middleware('auth')->middleware('admin')->name('schedule');
-    Route::post('/admin-schedule',  [\App\Http\Controllers\Admin\ScheduleController::class, 'selectSchedule'])->middleware('auth')->middleware('admin')->name('schedule');
-
-    Route::post('/create-user', [\App\Http\Controllers\Admin\UsersController::class, 'save'])->name('create-user');
+    Route::post('/admin-users', [\App\Http\Controllers\Admin\UsersController::class, 'search'])->name('search-user');
+    Route::post('/create-user', [\App\Http\Controllers\Admin\UsersController::class, 'create'])->name('create-user');
+    Route::post('/show-user', [\App\Http\Controllers\Admin\UsersController::class, 'show'])->name('show-user');
+    Route::post('/edit-user', [\App\Http\Controllers\Admin\UsersController::class, 'edit'])->name('edit-user');
     Route::post('/delete-user', [\App\Http\Controllers\Admin\UsersController::class, 'delete'])->name('delete-user');
+    Route::post('/current-page', [\App\Http\Controllers\Admin\UsersController::class, 'set_page'])->name('set-page');
+
+    /*Маршруты для страницы "Классы"*/
+    Route::get('/admin-classes',  [\App\Http\Controllers\Admin\ClassesController::class, 'index'])->middleware('auth')->middleware('admin')->name('classes');
     Route::post('/create-class', [\App\Http\Controllers\Admin\ClassesController::class, 'addClass'])->name('create-class');
     Route::post('/create-course', [\App\Http\Controllers\Admin\ClassesController::class, 'addCourse'])->name('create-course');
+
+    /*Маршруты для страницы "Предметы"*/
+    Route::get('/admin-subjects',  [\App\Http\Controllers\Admin\SubjectsController::class, 'index'])->middleware('auth')->middleware('admin')->name('subjects');
+
+    /*Маршруты для страницы "Занятость"*/
+    Route::get('/admin-employment',  [\App\Http\Controllers\Admin\EmploymentController::class, 'index'])->middleware('auth')->middleware('admin')->name('employment');
+
+    /*Маршруты для страницы "Расписание"*/
+    Route::get('/admin-schedule',  [\App\Http\Controllers\Admin\ScheduleController::class, 'index'])->middleware('auth')->middleware('admin')->name('schedule');
+    Route::post('/admin-schedule',  [\App\Http\Controllers\Admin\ScheduleController::class, 'selectSchedule'])->middleware('auth')->middleware('admin')->name('schedule');
     Route::post('/get-class-schedule', [\App\Http\Controllers\Admin\ScheduleController::class, 'getSchedule'])->name('get-class-schedule');
 });
