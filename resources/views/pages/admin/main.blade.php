@@ -75,6 +75,8 @@
 @section('scripts')
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.js'></script>
     <script>
+        let users_online = <?=json_encode($users_online)?>;
+        let all_users = <?=json_encode($all_users)?>;
         let donutOptions = {
             cutoutPercentage: 65,
             legend: {position:'top', padding: '15px', labels: {pointStyle:'circle', usePointStyle:true}}
@@ -85,7 +87,7 @@
                 {
                     backgroundColor: ['#4cbf73', '#d9534f'],
                     borderWidth: 0,
-                    data: [740, 1120]
+                    data: [users_online, all_users - users_online]
                 }
             ]
         };
