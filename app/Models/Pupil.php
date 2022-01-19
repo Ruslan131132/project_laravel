@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class Pupil extends Model
 {
+    protected $fillable = [
+        'id',
+        'name',
+        'surname',
+        'patronymic',
+        'address',
+        'class_id',
+    ];
     use HasFactory;
 
     public function user()

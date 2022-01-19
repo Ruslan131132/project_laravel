@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model
 {
+    protected $fillable = [
+        'id',
+        'name',
+        'surname',
+        'patronymic'
+    ];
+
     use HasFactory;
 
     public function user()
