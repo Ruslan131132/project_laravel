@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class ClassInfo extends Model
 {
     use HasFactory;
+
     protected $table = 'classes';
+
+    protected $fillable = [
+        'name',
+        'teacher_id',
+    ];
 
     public function pupils()
     {
