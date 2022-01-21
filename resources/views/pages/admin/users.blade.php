@@ -49,9 +49,9 @@
                 <h3 class="pb-2 border-bottom">Список пользователей</h3>
             </div>
             <div class="nav nav-tabs mb-3 px-0" id="nav-tab" role="tablist" >
-                <button class="nav-link {{$current_page == "Учитель" ? 'active' : ''}}" id="nav-teachers-tab" data-type="Учитель" data-bs-toggle="tab" data-bs-target="#nav-teachers" type="button" role="tab" aria-controls="nav-teachers" aria-selected="true">Учителя</button>
-                <button class="nav-link {{$current_page == "Ученик" ? 'active' : ''}}" id="nav-pupils-tab" data-type="Ученик" data-bs-toggle="tab" data-bs-target="#nav-pupils" type="button" role="tab" aria-controls="nav-pupils" aria-selected="false">Ученики</button>
-                <button class="nav-link {{$current_page == "Создание" ? 'active' : ''}}" id="nav-create-tab" data-type="Создание" data-bs-toggle="tab" data-bs-target="#nav-search" type="button" role="tab" aria-controls="nav-serch" aria-selected="false">Добавить</button>
+                <button class="nav-link {{ Session::get('current_subpage') == 'Teachers' ? 'active' : ''}}" id="nav-teachers-tab" data-type="Teachers" data-bs-toggle="tab" data-bs-target="#nav-teachers" type="button" role="tab" aria-controls="nav-teachers" aria-selected="true">Учителя</button>
+                <button class="nav-link {{ Session::get('current_subpage') == 'Pupils' ? 'active' : ''}}" id="nav-pupils-tab" data-type="Pupils" data-bs-toggle="tab" data-bs-target="#nav-pupils" type="button" role="tab" aria-controls="nav-pupils" aria-selected="false">Ученики</button>
+                <button class="nav-link {{ Session::get('current_subpage') == 'Add' ? 'active' : ''}}" id="nav-create-tab" data-type="Add" data-bs-toggle="tab" data-bs-target="#nav-search" type="button" role="tab" aria-controls="nav-serch" aria-selected="false">Добавить</button>
                 <form class="me-0 m-auto" method="POST" action="{{ route('admin.search-user') }}">
                     @csrf
                     <div class="input-group">
@@ -63,7 +63,7 @@
                 </form>
             </div>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade {{$current_page == "Учитель" ? 'show active' : ''}}" id="nav-teachers" role="tabpanel" aria-labelledby="nav-teachers-tab">
+                <div class="tab-pane fade {{ Session::get('current_subpage') == 'Teachers' ? 'show active' : ''}}" id="nav-teachers" role="tabpanel" aria-labelledby="nav-teachers-tab">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade {{$current_page == "Ученик" ? 'show active' : ''}}" id="nav-pupils" role="tabpanel" aria-labelledby="nav-pupils-tab">
+                <div class="tab-pane fade {{ Session::get('current_subpage') == 'Pupils' ? 'show active' : ''}}" id="nav-pupils" role="tabpanel" aria-labelledby="nav-pupils-tab">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
@@ -188,7 +188,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade {{$current_page == "Создание" ? 'show active' : ''}}" id="nav-search" role="tabpanel" aria-labelledby="nav-search-tab">
+                <div class="tab-pane fade {{ Session::get('current_subpage') == 'Add' ? 'show active' : ''}}" id="nav-search" role="tabpanel" aria-labelledby="nav-search-tab">
                     <div class="bd-example">
                         <form class="form" method="POST" action="{{ route('admin.create-user') }}">
                             @csrf
@@ -240,7 +240,7 @@
                                         <a class="password-control" onclick="return show_hide_password(this);"></a>
                                     </div>
                                     <div class="col-md-3 themed-grid-col">
-                                        <label for="email">Аватар</label>
+                                        <label for="user_img">Аватар</label>
                                         <input type="hidden" name="img" id="user_img" value="null">
                                         <div class="dropdown">
                                             <button class="btn dropdown-toggle" type="button" id="dropdownMenuAvatar" data-bs-toggle="dropdown" aria-expanded="false" style="border: 1px solid #ced4da; padding: 3px;">
@@ -297,7 +297,7 @@
                                 <div class="col-8">
                                     <p class="text-secondary mb-3" name="user_type" id="user_type"></p>
                                     <div class="text-secondary">Класс:
-                                        <select class="form-select" name="class_id" id="class_id" style="width:auto; display: inline-block;">
+                                        <select class="form-select" name="class_id" id="class_id" style="width:auto; display: inline-block;" disabled>
                                             <option>-</option>
                                             @foreach($classes as $class)
                                                 <option value="{{$class->id}}">{{ $class->name }}</option>
@@ -376,10 +376,6 @@
 @section('scripts')
     <script>
 
-        //Если выбран тип ученик то высветить для него класс - если учитель - скрыть
-        let current_user_type = "Ученик";
-
-
         //функционал списка типов пользователей
         $('select#user_type').on('change', function (e){
             if (this.value == "Учитель"){
@@ -393,7 +389,7 @@
             }
         })
 
-        //функционал выпадающего списка пользователей
+        //функционал выпадающего списка аватаров пользователей
         $('ul.dropdown-menu li').on('click', function (e){
             $($(this).parent().parent().parent()).find('input').val($(this).find('img').attr('src'));
             console.log($($(this).parent().parent().parent()).find('input').val());
@@ -401,21 +397,22 @@
         })
 
         //Текущая подстраница
-        let current_page = "Учитель";
+        let current_page = $('button.nav-link.active').attr('data-type');
         $(document).on('click', 'button.nav-link', function (e) {
             current_page = $(this).attr('data-type');
             //отправляем информацию о текущей странице на сервер
             $.ajax({
-                url: '{{route("admin.set-page")}}',
+                url: '{{route("set-page")}}',
                 type: 'POST',
                 data: {
-                    'current_page': current_page
+                    'current_page': 'users',
+                    'current_subpage': current_page,
                 },
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            if (current_page == "Учитель" || current_page == "Ученик"){
+            if (current_page == "Teachers" || current_page == "Pupils"){
                 $($(this).parent()).find('input, span').show();
             } else {
                 $($(this).parent()).find('input, span').hide();
@@ -492,25 +489,5 @@
             $('#deleteBody input#user_id').val(user_id);
             $('#deleteBody p').html(`Удалить пользователя <strong>${user_id}</strong> из системы ?`);
         });
-
-        (function () {
-            'use strict'
-
-            // Получите все формы, к которым мы хотим применить пользовательские стили проверки Bootstrap
-            let forms = document.querySelectorAll('.needs-validation')
-
-            // Зацикливайтесь на них и предотвращайте отправку
-            Array.prototype.slice.call(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
-
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
     </script>
 @endsection
