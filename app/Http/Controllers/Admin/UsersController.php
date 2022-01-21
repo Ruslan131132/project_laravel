@@ -19,22 +19,21 @@ class UsersController extends Controller
 
     public function index()
     {
-        if (!Session::has('current_page')){
-            Session::put('current_page', "Учитель");
+        if (!Session::has('current_page') || Session::get('current_page') != 'users'){
+            Session::put('current_page', 'users');
+            Session::put('current_subpage', 'Teachers');
         }
-        $current_page = Session::get('current_page', "Учитель");
+
         $pupils = Pupil::paginate(5, ['*'], 'pupils');
         $teachers = Teacher::paginate(5, ['*'], 'teachers');
         $classes = ClassInfo::orderBy('name', 'asc')->get();
-        return view('pages.admin.users', ['pupils' => $pupils, 'teachers' => $teachers, 'classes' => $classes, 'current_page' => $current_page ]);
+        return view('pages.admin.users', ['pupils' => $pupils, 'teachers' => $teachers, 'classes' => $classes]);
     }
 
     public function search(Request $request){
         Session::put('search-input', $request->input('search-user'));
         $input = Str::lower($request->input('search-user'));
-
-        $user_type = Session::get('current_page', "Учитель");
-        if ($user_type == "Учитель") {
+        if (Session::get('current_subpage') == "Teachers") {
             $pupils = Pupil::paginate(5, ['*'], 'pupils');
             $teachers = Teacher::whereRaw("REGEXP_SUBSTR('".$input."', name) != ''")
                 ->orWhere('name', 'like', '%'.$input.'%')
@@ -43,7 +42,7 @@ class UsersController extends Controller
                 ->orWhereRaw("REGEXP_SUBSTR('".$input."', patronymic) != ''")
                 ->orWhere('patronymic', 'like', '%'.$input.'%')
                 ->paginate(5, ['*'], 'teachers');
-        } elseif ($user_type == "Ученик") {
+        } elseif (Session::get('current_subpage') == "Pupils") {
             $teachers = Teacher::paginate(5, ['*'], 'teachers');
             $pupils = Pupil::whereRaw("REGEXP_SUBSTR('".$input."', name) != ''")
                 ->orWhere('name', 'like', '%'.$input.'%')
@@ -54,7 +53,7 @@ class UsersController extends Controller
                 ->paginate(5, ['*'], 'pupils');
         }
         $classes = ClassInfo::orderBy('name', 'asc')->get();
-        return view('pages.admin.users', ['pupils' => $pupils, 'teachers' => $teachers, 'classes' => $classes, 'current_page' => $user_type ]);
+        return view('pages.admin.users', ['pupils' => $pupils, 'teachers' => $teachers, 'classes' => $classes ]);
     }
 
     public function create(Request $request){
@@ -159,9 +158,9 @@ class UsersController extends Controller
                 'surname' => $request->surname,
                 'patronymic' => $request->patronymic
             ])->save();
-            $user->teacher->class->fill([
-                'id' => $request->class_id,
-            ])->save();
+//            $user->teacher->class->fill([
+//                'id' => $request->class_id,
+//            ])->save();
         }
         else if ($user->user_type == "Ученик"){
             $user->pupil->fill([
@@ -180,11 +179,6 @@ class UsersController extends Controller
         $user->forceDelete();
         $delete_user = $user->user_type == "Учитель" ? $user->teacher->forceDelete() : $user->pupil->forceDelete();
         return redirect()->back()->with('success', 'Профиль '.$user->user_id.' удален!');
-    }
-
-    public function set_page(Request $request){
-        Session::put('current_page', $request->input('current_page') );
-        return redirect()->to(route('admin.users'));
     }
 
 }
