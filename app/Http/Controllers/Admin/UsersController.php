@@ -78,12 +78,11 @@ class UsersController extends Controller
                 ->with('error', 'Ошибка валидации данных при создании пользователя');
         }
 
-
         $user = User::create([
             'user_id' => $request->user_id,
             'user_type' => $request->user_type,
             'img' => $request->img,
-            'password' => Hash::make($request->password)
+            'password' => $request->password
         ]);
 
         if ($user) {
@@ -148,7 +147,7 @@ class UsersController extends Controller
 
         if ($request->password){
             $user->fill([
-                'password' => Hash::make($request->password)
+                'password' => $request->password
             ])->save();
         }
 
@@ -158,9 +157,6 @@ class UsersController extends Controller
                 'surname' => $request->surname,
                 'patronymic' => $request->patronymic
             ])->save();
-//            $user->teacher->class->fill([
-//                'id' => $request->class_id,
-//            ])->save();
         }
         else if ($user->user_type == "Ученик"){
             $user->pupil->fill([
