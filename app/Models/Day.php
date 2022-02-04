@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Day extends Model
 {
     use HasFactory;
-    public function shedule()
+    public function schedule()
     {
-        return $this->hasMany(Shedule::class);
+        return $this->hasMany(Schedule::class);
     }
 }

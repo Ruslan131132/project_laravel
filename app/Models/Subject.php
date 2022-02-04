@@ -16,4 +16,8 @@ class Subject extends Model
     {
         return $this->hasMany(Employment::class);
     }
+    public function schedule()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

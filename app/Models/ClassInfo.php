@@ -26,10 +26,10 @@ class ClassInfo extends Model
     }
     public function employment()
     {
-        return $this->hasMany(Employment::class);
+        return $this->hasMany(Employment::class, 'class_id', 'id');
     }
-    public function shedule()
+    public function schedule()
     {
-        return $this->hasMany(Shedule::class);
+        return $this->hasMany(Schedule::class);
     }
 }
