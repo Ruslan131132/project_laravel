@@ -12,14 +12,15 @@ Route::get('/logout', function(){
     return redirect(route('index'));
 })->name('logout');
 
-/*Маршруты для Выгрузки файлов на сервер*/
+/*Маршрут для Выгрузки файлов на сервер*/
 Route::post('/file-upload', [\App\Http\Controllers\FileController::class, 'store'])->middleware('auth')->name('file-upload');
 
-/*Маршруты для авторизации*/
+/*Маршрут для авторизации*/
 Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
 
-/*Маршруты для задания сессий*/
+/*Маршрут для задания сессий*/
 Route::post('/current-page', [\App\Http\Controllers\SessionController::class, 'setPage'])->name('set-page');
+Route::post('/marks-filter', [\App\Http\Controllers\SessionController::class, 'filterMarks'])->name('marks-filter');
 
 Route::name('user.')->group(function(){
 
@@ -31,9 +32,8 @@ Route::name('user.')->group(function(){
 
     /*Маршруты для страницы "Оценки"*/
     Route::get('/user/marks',  [\App\Http\Controllers\User\MarksController::class, 'index'])->middleware('auth')->name('marks');
-    Route::post('/user/marks',  [\App\Http\Controllers\User\MarksController::class, 'changeFilter'])->middleware('auth')->name('marks');
-    Route::post('/change-mark',  [\App\Http\Controllers\User\MarksController::class, 'changeMark'])->middleware('auth')->name('change-mark');
-    Route::post('/add-mark',  [\App\Http\Controllers\User\MarksController::class, 'addMark'])->middleware('auth')->name('add-mark');
+    Route::post('/edit-mark',  [\App\Http\Controllers\User\MarksController::class, 'edit'])->middleware('auth')->name('edit-mark');
+    Route::post('/create-mark',  [\App\Http\Controllers\User\MarksController::class, 'create'])->middleware('auth')->name('create-mark');
 
     /*Маршруты для страницы "Курсы"*/
     Route::get('/user/courses',  [\App\Http\Controllers\User\CoursesController::class, 'index'])->middleware('auth')->name('courses');
@@ -65,15 +65,18 @@ Route::name('admin.')->group(function(){
     Route::post('/edit-class', [\App\Http\Controllers\Admin\ClassesController::class, 'edit'])->name('edit-class');
     Route::post('/delete-class', [\App\Http\Controllers\Admin\ClassesController::class, 'delete'])->name('delete-class');
 
-
     /*Маршруты для страницы "Предметы"*/
     Route::get('/admin/subjects',  [\App\Http\Controllers\Admin\SubjectsController::class, 'index'])->middleware('auth')->middleware('admin')->name('subjects');
 
     /*Маршруты для страницы "Занятость"*/
     Route::get('/admin/employment',  [\App\Http\Controllers\Admin\EmploymentController::class, 'index'])->middleware('auth')->middleware('admin')->name('employment');
+    Route::post('/delete-employment',  [\App\Http\Controllers\Admin\EmploymentController::class, 'delete'])->name('delete-employment');
+    Route::post('/create-employment',  [\App\Http\Controllers\Admin\EmploymentController::class, 'create'])->name('create-employment');
 
     /*Маршруты для страницы "Расписание"*/
     Route::get('/admin/schedule',  [\App\Http\Controllers\Admin\ScheduleController::class, 'index'])->middleware('auth')->middleware('admin')->name('schedule');
-    Route::post('/admin/schedule',  [\App\Http\Controllers\Admin\ScheduleController::class, 'selectSchedule'])->middleware('auth')->middleware('admin')->name('schedule');
-    Route::post('/get-class-schedule', [\App\Http\Controllers\Admin\ScheduleController::class, 'getSchedule'])->name('get-class-schedule');
+    Route::post('/create-schedule', [\App\Http\Controllers\Admin\ScheduleController::class, 'create'])->name('create-schedule');
+    Route::post('/delete-schedule',  [\App\Http\Controllers\Admin\ScheduleController::class, 'delete'])->name('delete-schedule');
+    Route::post('/edit-schedule',  [\App\Http\Controllers\Admin\ScheduleController::class, 'edit'])->name('edit-schedule');
+
 });
