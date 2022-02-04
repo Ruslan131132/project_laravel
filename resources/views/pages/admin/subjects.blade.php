@@ -15,7 +15,7 @@
 
 @section('content')
     <div class="row">
-        <div class="bd-heading sticky-xl-top align-self-start mt-3 mb-3 mt-xl-0 mb-xl-2">
+        <div class="bd-heading align-self-start mt-3 mb-3 mt-xl-0 mb-xl-2">
             <h3 class="pb-2 border-bottom">Список предметов</h3>
         </div>
         <table class="table table-hover table-responsive">
