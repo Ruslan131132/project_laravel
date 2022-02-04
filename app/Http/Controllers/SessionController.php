@@ -14,5 +14,11 @@ class SessionController extends Controller
         }
         return redirect()->back();
     }
+    public function filterMarks(Request $request){
+        Session::put('current_class_id', $request->class_id);
+        Session::put('current_subject_id', $request->subject_id);
+        return redirect()->back();
+    }
+
 
 }
