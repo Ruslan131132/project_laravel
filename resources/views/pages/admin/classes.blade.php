@@ -16,7 +16,7 @@
 @section('content')
     <div class="row">
         @include('flash-message')
-        <div class="bd-heading sticky-xl-top align-self-start mt-3 mb-3 mt-xl-0 mb-xl-2">
+        <div class="bd-heading align-self-start mt-3 mb-3 mt-xl-0 mb-xl-2">
             <h3 class="pb-2 border-bottom">Записи о классах и курсах</h3>
         </div>
         <div class="nav nav-tabs" id="nav-tab" role="tablist" style="padding-right: 0">
@@ -110,7 +110,7 @@
                             </div>
                             <div class="col-sm-2 col-md-3 col-lg-10 themed-grid-col">
                                 <label for="email" class="form-label">Изображение</label>
-                                <input type="hidden" name="img" id="user_img" value="null">
+                                <input type="hidden" name="img" id="user_img" value="">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuAvatar" data-bs-toggle="dropdown" aria-expanded="false" style="border: 1px solid #ced4da; padding: 3px;">
                                         <img src="" width="30" height="30" />
