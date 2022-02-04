@@ -6,6 +6,11 @@
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
 }
+
+a {
+    text-decoration: none;
+}
+
 #card{
     background-color: rgb(37 37 37);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
