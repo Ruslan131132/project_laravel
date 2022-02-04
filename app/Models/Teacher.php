@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Session;
 
 class Teacher extends Model
 {
@@ -13,8 +14,23 @@ class Teacher extends Model
         'surname',
         'patronymic'
     ];
+    /**
+     * @var mixed
+     */
 
     use HasFactory;
+
+
+
+    public function schedule(){
+        return $this->belongsToMany(
+            Schedule::class,
+            'schedules_teachers',
+            'teacher_id',
+            'schedule_id'
+        );
+    }
+
 
     public function user()
     {

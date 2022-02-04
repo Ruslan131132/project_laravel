@@ -8,6 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Schedule extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'class_id',
+        'subject_id',
+        'day_number',
+        'lesson_number',
+        'cabinet_id',
+    ];
+
+    public function teacher(){
+        return $this->belongsToMany(
+            Teacher::class,
+            'schedules_teachers',
+            'schedule_id',
+            'teacher_id'
+        );
+    }
+
     public function class()
     {
         return $this->belongsTo(ClassInfo::class);
