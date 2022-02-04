@@ -216,7 +216,7 @@
         <div class="row">
             <div class="col-12 col-md">
                 <img src="/img/LogoMospolytech.jpg" alt="logo" width="24" height="24" class="round">
-                <small class="d-block mb-3 text-muted">&copy; 2020 · Project · Ruslan</small>
+                <small class="d-block mb-3 text-muted">&copy; 2022 · Проект · Руслан</small>
                 <p>
                     <a href="https://www.facebook.com/dnevnik.ru"> <img src="/img/social-links/facebook.png" width="26" height="26"></a>
                     <a href="http://twitter.com/dnevnik_ru"> <img src="/img/social-links/twitter.png" width="26" height="26"></a>
