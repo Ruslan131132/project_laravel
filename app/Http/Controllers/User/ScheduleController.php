@@ -4,31 +4,26 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Day;
 use App\Models\Employment;
-use App\Models\Shedule;
+use App\Models\Lesson;
+use App\Models\Schedule;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ScheduleController extends Controller
 {
     public function index(){
-        if (Auth::user()->user_type == 'Ученик'){
-            $schedule = Shedule::where('class_id', Auth::user()->pupil->class_id)->orderByRaw('day_number ASC, lesson_number ASC')->get();
-        } else {
-            $schedule = Shedule::Where(function($query)
-            {
-                foreach (Auth::user()->teacher->employment as $info){
-                    $query->where([
-                        ['class_id', $info->class_id],
-                        ['subject_id', $info->subject_id],
-                    ]);
-                }
-            })->orderByRaw('day_number ASC, lesson_number ASC')->get();
-        }
-
+        $schedule = Auth::user()->user_type == 'Ученик'
+            ? Schedule::where('class_id', Auth::user()->pupil->class_id)->orderByRaw('day_number ASC, lesson_number ASC')->get()
+            : Auth::user()->teacher->schedule;
         $days = Day::all();
+        $lessons = Lesson::all()->map(function($lesson) {
+            return substr($lesson->start_time, 0, -3).'-'.substr($lesson->end_time, 0, -3);
+        });
         return view('pages.user.schedule', [
             'schedule' => $schedule,
-            'days' => $days
+            'days' => $days,
+            'lessons' => $lessons
         ]);
     }
 }
