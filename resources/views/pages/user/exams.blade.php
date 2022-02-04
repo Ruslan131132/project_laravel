@@ -18,7 +18,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="row">
         <section class="jumbotron text-center" style="margin-top: 2rem;">
             <div class="container">
                 <h1>Подготовка к Экзаменам</h1>
@@ -26,95 +26,78 @@
             </div>
         </section>
         <div class="row" style="text-align: center" align="center">
-            <div class="col">
+            <div class="col-12">
                 <h3><b>Мы гарантируем:</b></h3>
             </div>
         </div>
-
-        <div class="table-responsive">
-            <table class="table table-striped table-sm" style="text-align: center;">
-                <tbody>
-                <tr>
-                    <td width="25%">
-                        <img src="/img/ege/2.png" class="mt48 mb24">
-                    </td>
-                    <td width="25%">
-                        <img src="/img/ege/3.png" class="mt48 mb24">
-                    </td>
-                    <td width="25%">
-                        <img src="/img/ege/4.png" class="mt48 mb24">
-                    </td>
-                    <td width="25%">
-                        <img src="/img/ege/5.png" class="mt48 mb24">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Университетский<br>
-                        уровень подготовки
-                    </td>
-                    <td>
-                        Научить понимать,<br>
-                        а не «зубрить»
-                    </td>
-                    <td>
-                        Индивидуальный<br>
-                        подход
-                    </td>
-                    <td>
-                        Доступные<br>
-                        цены
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="/img/ege/6.png" class="mt48 mb24">
-                    </td>
-                    <td>
-                        <img src="/img/ege/7.png" class="mt48 mb24">
-                    </td>
-                    <td>
-                        <img src="/img/ege/8.png" class="mt48 mb24">
-                    </td>
-                    <td>
-                        <img src="/img/ege/9.png" class="mt48 mb24">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Ликвидировать<br>
-                        пробелы в школьной<br>
-                        программе
-                    </td>
-                    <td>
-                        Педагогов, заинтересованных<br>
-                        в хорошем результате
-                    </td>
-                    <td>
-                        Удобное расписание<br>
-                        занятий<br>
-                        (будни или выходные)
-                    </td>
-                    <td>
-                        Подготовку<br>
-                        с учетом<br>
-                        требований ФГОС
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="row d-flex justify-content-sm-around">
+            <div class="col-lg-3 col-md-6 text-center">
+                <img src="/img/ege/2.png">
+                <p>
+                    Университетский<br>уровень подготовки
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <img src="/img/ege/3.png">
+                <p>
+                    Научить понимать,<br>а не «зубрить»
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <img src="/img/ege/4.png">
+                <p>
+                    Индивидуальный<br>подход
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <img src="/img/ege/5.png">
+                <p>
+                    Доступные<br>цены
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <img src="/img/ege/6.png" class="mt48 mb24">
+                <p>Ликвидировать<br>
+                    пробелы в школьной<br>
+                    программе
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <img src="/img/ege/7.png" class="mt48 mb24">
+                <p>
+                    Педагогов, заинтересованных<br>
+                    в хорошем результате
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <img src="/img/ege/8.png" class="mt48 mb24">
+                <p>
+                    Удобное расписание<br>
+                    занятий<br>
+                    (будни или выходные)
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <img src="/img/ege/9.png" class="mt48 mb24">
+                <p>
+                    Подготовку<br>
+                    с учетом<br>
+                    требований ФГОС
+                </p>
+            </div>
         </div>
+
         <br/>
-        <div class="container container-info">
+        <div class="row container-info">
             <div class="row row-info" align="center">
                 <div class="col">
-                    <b><p><a class="link_none_a" href="https://old.mospolytech.ru/index.php?id=5709">&nbsp;КАК&nbsp;<nobr style="color: red">ПОСТУПИТЬ НА ПОДГОТОВИТЕЛЬНЫЕ КУРСЫ</nobr> Московского Политеха</a></p></b>
+                    <h6><a class="link_none_a" href="https://old.mospolytech.ru/index.php?id=5709">&nbsp;КАК&nbsp;<span style="color: red">ПОСТУПИТЬ НА ПОДГОТОВИТЕЛЬНЫЕ КУРСЫ</span> Московского Политеха</a></h6>
                 </div>
             </div>
         </div>
         <br/>
         <footer class="container">
-            <p style="text-align: right;">&copy; 2020 Московский Политехнический Университет · Курсы · Дневник</p>
+            <p style="text-align: right;">&copy; 2022 Московский Политехнический Университет · Курсы · Дневник · Проект</p>
         </footer>
     </div>
 @endsection

@@ -29,6 +29,16 @@
         .dot-green {
             background: #39c739;
         }
+
+        @media screen and (max-device-width: 540px) {
+            div.nav-tabs form{
+                flex-basis: 100%;
+                height: 50px;
+            }
+            div.nav-tabs form span{
+                height: 50px;
+            }
+        }
     </style>
 
 @endsection
@@ -56,7 +66,7 @@
                     @csrf
                     <div class="input-group">
                         <input type="text" name="search-user" id="search-user" class="form-control nav-link" value="{{\Illuminate\Support\Facades\Session::get('search-input', "")}}" aria-label="" style="border-color: #e9ecef #e9ecef transparent #dee2e6; isolation: isolate; color: grey; border-radius: 0; border-top-left-radius: 0.25rem">
-                        <span class="input-group-text" style="border-radius: 0; border-bottom: 0; border-top-right-radius: 0.25rem;" onclick="console.log($(this).parent().parent().submit())">
+                        <span class="input-group-text" style="border-radius: 0; border-bottom: 0; border-top-right-radius: 0.25rem;" onclick="$(this).parent().parent().submit()">
                             <img src="/img/search-icon.png" style="transform: scaleX(-1); width: 20px; height: 20px; transform: scale(-2, 2);"/>
                         </span>
                     </div>
@@ -257,7 +267,7 @@
                                     </div>
                                     <div class="col-md-3 themed-grid-col">
                                         <label for="address">Адрес</label>
-                                        <input type="text" name="address" id="address" class="form-control" placeholder="Адрес..." required autofocus />
+                                        <input type="text" name="address" id="address" class="form-control" placeholder="Адрес..." />
                                     </div>
                                 </div>
                             </div>
@@ -375,7 +385,6 @@
 
 @section('scripts')
     <script>
-
         //функционал списка типов пользователей
         $('select#user_type').on('change', function (e){
             if (this.value == "Учитель"){
@@ -437,6 +446,7 @@
         $(document).on('click', '.editButton', function(event) {
             $('#editBody input:password').val('');
             $('#editBody div#collapsePassword').removeClass('show');
+            $('#editBody select#class_id').prop("disabled", true);
             $($('#editBody select#lass_id option')[0]).show();
             let user_id = $(this).attr('data-user_id');
 
@@ -465,7 +475,10 @@
                     $("#editBody p#user_type").html("Должность: " + result['user_type']);
                     $("#editBody p#user_id").html("ID: " + result['id']);
                     $("#editBody input#input_user_id").val(result['id']);
-                    if (result['user_type'] == "Ученик") $($('#editBody select#class_id option')[0]).hide();
+                    if (result['user_type'] == "Ученик") {
+                        $($('#editBody select#class_id option')[0]).hide();
+                        $('#editBody select#class_id').prop("disabled", false);
+                    }
 
                     $('#editBody select#class_id option').each(function()
                     {

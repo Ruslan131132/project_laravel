@@ -18,8 +18,8 @@
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="jumbotron" style="background: #f3f3f3; margin-top: 2rem;">
+    <div class="row">
+        <div class="p-5 my-3 bg-light rounded-3" style=" margin-top: 2rem;">
             <div class="container" >
                 <h1 class="display-3">Задания олимпиад</h1>
                 <p>Тренируйтесь на материалах прошедших соревнований и побеждайте!</p>
