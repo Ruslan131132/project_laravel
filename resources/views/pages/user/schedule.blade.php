@@ -48,7 +48,7 @@
                             @for ($j = 0; $j < $info->lesson_number - $i; $j++)
                                 <li class="list-group-item d-flex justify-content-between lh-sm
                                     {{ //проверяем текущий ли день в расписании
-                                        $info->day_number == date("N", strtotime(date("l"))) &&
+                                        $day->number == date("N", strtotime(date("l"))) &&
                                         (strtotime(date('H:i')) > strtotime(substr($lessons[$i + $j - 1], 0, -6))) &&
                                         (strtotime(date('H:i')) < strtotime(substr($lessons[$i + $j - 1], -5)))
                                         ? 'list-group-item-success'
@@ -106,7 +106,7 @@
                     @for ($j = 0; $j < 7 - $i; $j++)
                         <li class="list-group-item d-flex justify-content-between lh-sm
                             {{ //проверяем текущий ли день в расписании
-                                $info->day_number == date("N", strtotime(date("l"))) &&
+                                $day->number == date("N", strtotime(date("l"))) &&
                                 (strtotime(date('H:i')) > strtotime(substr($lessons[$i + $j], 0, -6))) &&
                                 (strtotime(date('H:i')) < strtotime(substr($lessons[$i + $j], -5)))
                                 ? 'list-group-item-success'

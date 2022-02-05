@@ -2,7 +2,7 @@
 
 @section('description', 'Admin Panel')
 
-@section('title-block', 'Main')
+@section('title-block', 'Users')
 
 @section('styles')
     <link rel="stylesheet" href="/css/admin/admin.css">
@@ -31,6 +31,9 @@
         }
 
         @media screen and (max-device-width: 540px) {
+            div.nav-tabs{
+                justify-content: space-between;
+            }
             div.nav-tabs form{
                 flex-basis: 100%;
                 height: 50px;
@@ -56,9 +59,9 @@
     @include('flash-message')
         <div class="row">
             <div class="bd-heading  align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
-                <h3 class="pb-2 border-bottom">Список пользователей</h3>
+                <h3 class="pb-2 border-bottom text-center text-lg-start">Список пользователей</h3>
             </div>
-            <div class="nav nav-tabs mb-3 px-0" id="nav-tab" role="tablist" >
+            <div class="nav nav-tabs mb-3 px-0 d-flex " id="nav-tab" role="tablist" >
                 <button class="nav-link {{ Session::get('current_subpage') == 'Teachers' ? 'active' : ''}}" id="nav-teachers-tab" data-type="Teachers" data-bs-toggle="tab" data-bs-target="#nav-teachers" type="button" role="tab" aria-controls="nav-teachers" aria-selected="true">Учителя</button>
                 <button class="nav-link {{ Session::get('current_subpage') == 'Pupils' ? 'active' : ''}}" id="nav-pupils-tab" data-type="Pupils" data-bs-toggle="tab" data-bs-target="#nav-pupils" type="button" role="tab" aria-controls="nav-pupils" aria-selected="false">Ученики</button>
                 <button class="nav-link {{ Session::get('current_subpage') == 'Add' ? 'active' : ''}}" id="nav-create-tab" data-type="Add" data-bs-toggle="tab" data-bs-target="#nav-search" type="button" role="tab" aria-controls="nav-serch" aria-selected="false">Добавить</button>
@@ -66,7 +69,7 @@
                     @csrf
                     <div class="input-group">
                         <input type="text" name="search-user" id="search-user" class="form-control nav-link" value="{{\Illuminate\Support\Facades\Session::get('search-input', "")}}" aria-label="" style="border-color: #e9ecef #e9ecef transparent #dee2e6; isolation: isolate; color: grey; border-radius: 0; border-top-left-radius: 0.25rem">
-                        <span class="input-group-text" style="border-radius: 0; border-bottom: 0; border-top-right-radius: 0.25rem;" onclick="$(this).parent().parent().submit()">
+                        <span class="input-group-text searchButton" style="border-radius: 0; border-bottom: 0; border-top-right-radius: 0.25rem;" onclick="$(this).parent().parent().submit()">
                             <img src="/img/search-icon.png" style="transform: scaleX(-1); width: 20px; height: 20px; transform: scale(-2, 2);"/>
                         </span>
                     </div>
@@ -121,9 +124,19 @@
                                                     <span class="text-secondary">Последний раз был {{ Carbon\Carbon::parse($teacher->user->last_seen)->diffForHumans() }}</span>
                                                 @endif
                                             </td>
-                                            <td class="text-end">
-                                                <mat-icon _ngcontent-serverapp-c191="" role="img" class="mat-icon notranslate material-icons mat-icon-no-color editButton" style="color: grey;" aria-hidden="true" data-mat-icon-type="font" data-user_id="{{ $teacher->id }}">edit</mat-icon>
-                                                <mat-icon _ngcontent-serverapp-c191="" role="img" class="mat-icon notranslate material-icons mat-icon-no-color deleteButton" style="color: #DB2828;" aria-hidden="true" data-mat-icon-type="font" data-user_id="{{ $teacher->id }}">delete_forever</mat-icon>
+                                            <td class="text-end" style="min-width: 100px;">
+                                                {{--Кнопка "редактировать"--}}
+                                                <span class="p-0 editButton" data-user_id="{{ $teacher->id }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="grey" class="bi bi-pencil" viewBox="0 0 19 14" style="background: #f8f9fa; border-radius: 20px">
+                                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                    </svg>
+                                                </span>
+                                                {{--Кнопка "удалить"--}}
+                                                <span class="p-0 deleteButton" data-user_id="{{ $teacher->id }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-trash" viewBox="0 0 16 16" style="background: #dc3545; border-radius: 20px; padding: 5px">
+                                                        <path fill-rule="evenodd" d="M6.5 1a.5.5 0 0 0-.5.5v1h4v-1a.5.5 0 0 0-.5-.5h-3ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1H3.042l.846 10.58a1 1 0 0 0 .997.92h6.23a1 1 0 0 0 .997-.92l.846-10.58Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                                    </svg>
+                                                </span>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -183,9 +196,19 @@
                                                     <span class="text-secondary">Последний раз был {{ Carbon\Carbon::parse($pupil->user->last_seen)->diffForHumans() }}</span>
                                                 @endif
                                             </td>
-                                            <td class="text-end">
-                                                <mat-icon _ngcontent-serverapp-c191="" role="img" class="mat-icon notranslate material-icons mat-icon-no-color editButton" style="color: grey;" aria-hidden="true" data-mat-icon-type="font" data-user_id="{{ $pupil->id }}">edit</mat-icon>
-                                                <mat-icon _ngcontent-serverapp-c191="" role="img" class="mat-icon notranslate material-icons mat-icon-no-color deleteButton" style="color: #DB2828;" aria-hidden="true" data-mat-icon-type="font" data-user_id="{{ $pupil->id }}">delete_forever</mat-icon>
+                                            <td class="text-end" style="min-width: 100px;">
+                                                {{--Кнопка "редактировать"--}}
+                                                <span class="p-0 editButton" data-user_id="{{ $pupil->id }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="grey" class="bi bi-pencil" viewBox="0 0 19 14" style="background: #f8f9fa; border-radius: 20px">
+                                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                    </svg>
+                                                </span>
+                                                {{--Кнопка "удалить"--}}
+                                                <span class="p-0 deleteButton" data-user_id="{{ $pupil->id }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-trash" viewBox="0 0 16 16" style="background: #dc3545; border-radius: 20px; padding: 5px">
+                                                        <path fill-rule="evenodd" d="M6.5 1a.5.5 0 0 0-.5.5v1h4v-1a.5.5 0 0 0-.5-.5h-3ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1H3.042l.846 10.58a1 1 0 0 0 .997.92h6.23a1 1 0 0 0 .997-.92l.846-10.58Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                                    </svg>
+                                                </span>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -271,7 +294,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col text-center text-md-start">
                                 <button class="btn btn-lg btn-success btn-block" type="submit">
                                     Зарегистрировать
                                 </button>

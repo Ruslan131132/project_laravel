@@ -16,23 +16,18 @@
 @section('content')
     <div class="row">
         <div class="bd-heading align-self-start mt-3 mb-3 mt-xl-0 mb-xl-2">
-            <h3 class="pb-2 border-bottom">Список предметов</h3>
+            <h3 class="pb-2 border-bottom text-center text-lg-start">Список предметов</h3>
         </div>
         <table class="table table-hover table-responsive">
             <thead class="table-light">
             <tr>
                 <th scope="col">Дисциплина</th>
-                <th scope="col">Действия</th>
             </tr>
             </thead>
             <tbody>
             @foreach ($subjects as $subject)
                 <tr>
                     <th scope="row">{{ $subject->name }}</th>
-                    <td>
-                        <mat-icon _ngcontent-serverapp-c191="" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" style="color: grey;" aria-hidden="true" data-mat-icon-type="font">edit</mat-icon>
-                        <mat-icon _ngcontent-serverapp-c191="" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" style="color: #DB2828;" aria-hidden="true" data-mat-icon-type="font">delete_forever</mat-icon>
-                    </td>
                 </tr>
             @endforeach
             </tbody>

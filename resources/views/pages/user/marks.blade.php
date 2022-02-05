@@ -20,30 +20,26 @@
 @section('content')
 
     <div class="row">
-        <div class="bd-heading sticky-xl-top align-self-start mt-3 mb-3 mt-xl-0 mb-xl-2 mb-2">
-            <div class="row border-bottom justify-content-between">
-                <div class="col-6">
-                    <h3 class="pb-2 ">Оценки</h3>
+        <div class="bd-heading align-self-start mt-3 mb-3 mt-xl-0 mb-xl-2 mb-2">
+            <div class="row border-bottom justify-content-between ">
+                <div class="col-sm-12 col-md-auto">
+                    <h3 class="pb-2 d-md-inline text-center text-md-start">Оценки</h3>
                 </div>
                 @if(Auth::user()->user_type == 'Учитель')
-                    <div class="col-6">
-                        <form class="row g-3 d-print-inline justify-content-end mb-2" method="POST" action="{{ route('marks-filter') }}">
+                    <div class="col-sm-12 col-md-auto">
+                        <form class="row g-3 d-print-inline justify-content-around mb-2" method="POST" action="{{ route('marks-filter') }}">
                             @csrf
-                            <div class="col-lg-3 col-md-6 text-sm-end">
+                            <div class="col-auto text-center">
                                 <label for="class_name" class="col-form-label">Класс:&nbsp;</label>
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-                                <select class="form-control" id="class_id" name="class_id" width="50px" required onChange="this.form.submit()">
+                                <select class="form-control w-auto d-inline" id="class_id" name="class_id" required onChange="this.form.submit()">
                                     @foreach($classes as $class)
                                         <option value="{{ $class->id }}" {{ $class->id == Session::get('current_class_id') ? 'selected' : '' }}>{{ $class->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-lg-3 col-md-6 text-sm-end">
+                            <div class="col-auto">
                                 <label for="class_name" class="col-form-label">Предмет:&nbsp;</label>
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-                                <select class="form-control" id="subject_id" name="subject_id" width="100px" required onChange="this.form.submit()">
+                                <select class="form-control w-auto d-inline" id="subject_id" name="subject_id"  required onChange="this.form.submit()">
                                     @foreach($subjects as $subject)
                                         <option value="{{ $subject->id }}" {{ $subject->id == Session::get('current_subject_id') ? 'selected' : '' }}>{{ $subject->name }}</option>
                                     @endforeach
