@@ -5,19 +5,36 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ClassInfo;
 use App\Models\Course;
+use App\Models\Day;
 use App\Models\Employment;
+use App\Models\Lesson;
+use App\Models\Schedule;
 use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class EmploymentController extends Controller
 {
     public function index(){
+        $teachers = Teacher::orderBy('surname', 'asc')->get();
+        if (!Session::has('current_page') || Session::get('current_page') != 'employment'){
+            Session::put('current_page', 'employment');
+            Session::put('current_subpage', $teachers->first()->id);
+        }
+        $schedule = $teachers->find(Session::get('current_subpage'))->schedule->sortBy([
+            'day_number', 'lesson_number'
+        ]);
+        $days = Day::all();
+        $lessons = Lesson::all()->map(function($lesson) {
+            return substr($lesson->start_time, 0, -3).'-'.substr($lesson->end_time, 0, -3);
+        });
+
          return view('pages.admin.employment', [
-             'teachers' => Teacher::all(),
-             'classes' => ClassInfo::all(),
-             'subjects' => Subject::all(),
-             'employments' => Employment::paginate(15)
+             'teachers' => $teachers,
+             'schedule' => $schedule,
+             'days' => $days,
+             'lessons' => $lessons
          ]);
     }
 
