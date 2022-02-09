@@ -15,11 +15,12 @@
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
             <img src="/img/mospolytech-logo-white.png" alt="logo" width="20" height="20" class="round"> Дневник
         </a>
-        <button style="color: #999" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-caret-down-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M3.544 6.295A.5.5 0 0 1 4 6h8a.5.5 0 0 1 .374.832l-4 4.5a.5.5 0 0 1-.748 0l-4-4.5a.5.5 0 0 1-.082-.537z"/>
-                <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-            </svg>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#999" class="bi bi-list" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+            </span>
         </button>
         <div class="collapse navbar-collapse justify-content-md-center" id="navbarCollapse">
             <ul class="navbar-nav">
@@ -51,18 +52,21 @@
         </div>
     </nav>
 
-    <!-- Компонент для демонстрации информации -->
     <div class="p-5 mb-3 bg-light rounded-3">
         <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold">Дневник</h1>
             <p class="col-md-8 fs-4">Добро пожаловать - Здесь вы можете следить за успеваемостью.</p>
-            <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#ModalInfo">Подробнее &raquo;</button>
-
-            <div id="ModalInfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalPopoversLabel" style="display: none;" aria-hidden="true">
+            <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#ModalInfo">Подробнее
+                <svg xmlns="http://www.w3.org/2000/svg" width="0.8em" height="0.8em" fill="white" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </button>
+            <div id="ModalInfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalPopoversLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalPopoversLabel">Информация</h5>
+                            <h5 class="modal-title" id="ModalPopoversLabel">Информация</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -73,7 +77,7 @@
                         </div>
                         <div class="modal-footer">
                             <p>
-                                Более подробно <a href="https://ru.wikipedia.org/wiki/%D0%AD%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%BD%D1%8B%D0%B9_%D0%B4%D0%BD%D0%B5%D0%B2%D0%BD%D0%B8%D0%BA_%D0%B8_%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB" class="tooltip-test" title="Ознакомление" data-container="#exampleModalPopovers">здесь</a>
+                                Более подробно <a href="https://ru.wikipedia.org/wiki/%D0%AD%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%BD%D1%8B%D0%B9_%D0%B4%D0%BD%D0%B5%D0%B2%D0%BD%D0%B8%D0%BA_%D0%B8_%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB" class="tooltip-test" title="Ознакомление" data-container="#ModalPopovers">здесь</a>
                             </p>
                         </div>
                     </div>
@@ -82,9 +86,8 @@
         </div>
     </div>
 
-    <br class="clearfix w-100 d-md-none pb-3">
-    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-        <div class="bg-light mr-md-3 py-3 px-3 py-md-5 px-md-3 text-center overflow-hidden">
+    <div class="container-fluid w-100 my-md-3 px-0 py-5">
+        <div class="bg-light py-3 py-md-5 text-center overflow-hidden">
             <div class="my-3 p-3">
                 <h2 class="display-5">Вход</h2>
                 <p class="lead">
@@ -121,93 +124,83 @@
             </div>
         </div>
     </div>
-    <br class="clearfix w-100 d-md-none pb-3">
-    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-        <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-            <div class="my-3 p-3">
-                <h2 class="display-5">Популярные электронные услуги</h2>
-                <p class="lead">У вас есть возможность</p>
-            </div>
-            <div id="mobile_style" class="bg-dark shadow-sm mx-auto">
-                <div class="row" style=" text-align: left; margin: 5%; ">
-                    <p class="link_list" >
-                        <a class="links" href="https://www.gosuslugi.ru/group/school_enrollment">
-                            <svg width="15" height="15" viewBox="0 0 16 16" class="bi bi-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="8" cy="8" r="8"/>
-                            </svg> Записаться в школу
-                        </a>
-                        <br/>
-                        <a class="links" href="https://www.gosuslugi.ru/group/kindergarten_enrollment">
-                            <svg width="15" height="15" viewBox="0 0 16 16" class="bi bi-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="8" cy="8" r="8"/>
-                            </svg> Записаться в детский сад
-                        </a>
-                        <br/>
-                        <a class="links" href="https://www.mos.ru/pgu/ru/application/dogm/077060701/#step_1">
-                            <svg width="15" height="15" viewBox="0 0 16 16" class="bi bi-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="8" cy="8" r="8"/>
-                            </svg> Записаться в кружок или секцию
-                        </a>
-                        <br/>
-                        <font size="2" style="color: #d7d7d7">
-                            <a class="links" href="https://www.gosuslugi.ru/">
-                                <u>Больше услуг на www.gosuslugi.ru</u>
-                            </a>
-                        </font>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-            <div class="my-3 p-3">
-                <h2 class="display-5">Олимпиада по математике</h2>
-                <p class="lead">Главные призы - новые iPhone, iPad и PS5 </p>
-            </div>
-            <div class="bg-light shadow-sm mx-auto" style="width: 80%; height:80%; border-radius: 21px 21px 0 0;"><img id="prize_img" src="/img/Prize.png" alt="Здесь должен быть школьник" >
-            </div>
 
+    <div class="px-4 py-5" id="featured-3">
+        <h1 class="display-4 fw-bold text-center">Электронные услуги</h1>
+        <div class="col-lg-6 mx-auto text-center">
+            <p class="lead mb-4">
+                У вас есть возможность
+            </p>
+        </div>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 px-md-5">
+            <div class="feature col">
+                <div class="feature-icon bg-light bg-gradient">
+                    <img src="/img/report-card.png" class="bi">
+                </div>
+                <h2>Успеваемость</h2>
+                <p>
+                    Электронный дневник помогает следить за учёбой ребенка. В нём можно узнавать о родительских собраниях, расписании, домашних заданиях и оценках.
+                </p>
+                <a href="#" class="icon-link">
+                    Подробнее
+                    <svg class="bi" width="1em" height="1em">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="feature col">
+                <div class="feature-icon bg-light bg-gradient">
+                    <img src="/img/globe-black.svg" class="bi" >
+                </div>
+                <h2>Олимпиады</h2>
+                <p>
+                    Всероссийская олимпиада школьников является важным звеном в системе поиска и отбора талантливых детей, выявления и развития их способностей.
+                </p>
+                <a href="#" class="icon-link">
+                    Подробнее
+                    <svg class="bi" width="1em" height="1em">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="feature col">
+                <div class="feature-icon bg-light bg-gradient">
+                    <img src="/img/sections.png" class="bi" >
+                </div>
+                <h2>Кружки/Секции</h2>
+                <p>
+                    Удобный каталог кружков, секций и курсов для детей и подростков. Подбор занятий по увлечениям, полу, возрасту.
+                </p>
+                <a href="#" class="icon-link">
+                    Подробнее
+                    <svg class="bi" width="1em" height="1em">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </a>
+            </div>
         </div>
     </div>
 
-    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-        <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-            <div class="my-3 py-3">
-                <h2 class="display-5">Внимание!</h2>
-                <p class="lead">Если у вас нет логина и пароля - Обратитесь к преподавателю</p>
+    <div class="px-4 pt-5 text-center">
+        <h1 class="display-4 fw-bold">Олимпиада по математике</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">
+                Для участия в ОЛИМПИАДЕ пройди регистрацию через свою школу или пройди самостоятельную регистрацию на нашем сайте.
+                Главные призы - новые iPhone, iPad и PS5
+            </p>
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mb-5">
+                <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Подробнее
+                    <svg xmlns="http://www.w3.org/2000/svg" width="0.8em" height="0.8em" fill="white" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </button>
+                <button type="button" class="btn btn-outline-secondary btn-lg px-4">Больше олимпиад!</button>
             </div>
-            <div class="bg-white shadow-sm mx-auto" style="width: 80%; height: 80%; border-radius: 21px 21px 0 0;"><img src="/img/book.png" alt="Здесь должен быть школьник" style="width: 75%; height: 75%";></div>
         </div>
-        <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-            <div class="my-3 p-3">
-                <h2 class="display-5">Школьные сервисы</h2>
-                <p class="lead">Просматривайте</p>
-            </div>
-            <div id="mobile_style" class="bg-dark shadow-sm mx-auto">
-                <div class="row" style=" text-align: left; margin: 5%; ">
-                    <p class="link_list" >
-                        <a class="links" href="https://edu.tatar.ru/uslugi_app/parents/index.html">
-                            <svg width="15" height="15" viewBox="0 0 16 16" class="bi bi-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" >
-                                <circle cx="8" cy="8" r="8"/>
-                            </svg> Оценки и домашние задания
-                        </a>
-                        <br/>
-                        <a class="links" href="https://edu.tatar.ru/uslugi_app/parents/index.html">
-                            <svg width="15" height="15" viewBox="0 0 16 16" class="bi bi-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="8" cy="8" r="8"/>
-                            </svg> Уведомления от учителей и администрации
-                        </a>
-                        <br/>
-                        <a class="links" href="https://edu.tatar.ru/uslugi_app/parents/index.html">
-                            <svg width="15" height="15" viewBox="0 0 16 16" class="bi bi-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="8" cy="8" r="8"/>
-                            </svg> Баланс и пополнение школьной карты
-                        </a>
-                        <br/>
-                        <font size="2" style="color: #d7d7d7">
-                            <a class="links" href="https://edu.tatar.ru/uslugi_app/parents/index.html"><u>Узнайте как подключиться</u></a>
-                        </font>
-                    </p>
-                </div>
+        <div class="overflow-hidden" id="prizeContainer">
+            <div class="container px-5">
+                <img src="/img/Prize.png" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Приз" width="700" height="500" loading="lazy">
             </div>
         </div>
     </div>
