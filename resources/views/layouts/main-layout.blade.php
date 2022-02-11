@@ -7,6 +7,7 @@
     <meta name="author" content="Ruslan Khasanshin">
     <meta name="description" content=@yield('description')>
     <title>@yield('title')</title>
+    <link rel="shortcut icon" href="/img/mospolytech-logo-white.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/bootstrap.css">
 
     @yield('styles')
