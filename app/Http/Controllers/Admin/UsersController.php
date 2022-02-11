@@ -6,10 +6,7 @@ use App\Models\Pupil;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -24,8 +21,8 @@ class UsersController extends Controller
             Session::put('current_subpage', 'Teachers');
         }
 
-        $pupils = Pupil::paginate(5, ['*'], 'pupils');
-        $teachers = Teacher::paginate(5, ['*'], 'teachers');
+        $pupils = User::where('user_type', 'Ученик')->paginate(5, ['*'], 'pupils');
+        $teachers = User::where('user_type', 'Учитель')->paginate(5, ['*'], 'teachers');
         $classes = ClassInfo::orderBy('name', 'asc')->get();
         return view('pages.admin.users', ['pupils' => $pupils, 'teachers' => $teachers, 'classes' => $classes]);
     }
@@ -33,27 +30,33 @@ class UsersController extends Controller
     public function search(Request $request){
         Session::put('search-input', $request->input('search-user'));
         $input = Str::lower($request->input('search-user'));
-        if (Session::get('current_subpage') == "Teachers") {
-            $pupils = Pupil::paginate(5, ['*'], 'pupils');
-            $teachers = Teacher::whereRaw("REGEXP_SUBSTR('".$input."', name) != ''")
-                ->orWhere('name', 'like', '%'.$input.'%')
-                ->orWhereRaw("REGEXP_SUBSTR('".$input."', surname) != ''")
-                ->orWhere('surname', 'like', '%'.$input.'%')
-                ->orWhereRaw("REGEXP_SUBSTR('".$input."', patronymic) != ''")
-                ->orWhere('patronymic', 'like', '%'.$input.'%')
-                ->paginate(5, ['*'], 'teachers');
-        } elseif (Session::get('current_subpage') == "Pupils") {
-            $teachers = Teacher::paginate(5, ['*'], 'teachers');
-            $pupils = Pupil::whereRaw("REGEXP_SUBSTR('".$input."', name) != ''")
-                ->orWhere('name', 'like', '%'.$input.'%')
-                ->orWhereRaw("REGEXP_SUBSTR('".$input."', surname) != ''")
-                ->orWhere('surname', 'like', '%'.$input.'%')
-                ->orWhereRaw("REGEXP_SUBSTR('".$input."', patronymic) != ''")
-                ->orWhere('patronymic', 'like', '%'.$input.'%')
-                ->paginate(5, ['*'], 'pupils');
+        $filter_type = 'Учитель';
+        $default_type = 'Ученик';
+        if (Session::get('current_subpage') == 'Pupils') {
+            $filter_type = 'Ученик';
+            $default_type = 'Учитель';
         }
+
+        $default = User::where('user_type', $default_type)
+            ->paginate(5, ['*'], Str::lower(Session::get('current_subpage')));
+
+        $filter = User::where('user_type', $filter_type)
+            ->where(function($query) use ($input) {//используем такую конструкцию, чтобы учитывалось основное условие
+                $query->whereRaw("REGEXP_SUBSTR('".$input."', name) != ''")
+                    ->orWhere('name', 'like', '%'.$input.'%')
+                    ->orWhereRaw("REGEXP_SUBSTR('".$input."', surname) != ''")
+                    ->orWhere('surname', 'like', '%'.$input.'%')
+                    ->orWhereRaw("REGEXP_SUBSTR('".$input."', patronymic) != ''")
+                    ->orWhere('patronymic', 'like', '%'.$input.'%');
+            })
+            ->paginate(5, ['*'], Str::lower(Session::get('current_subpage')));
+
         $classes = ClassInfo::orderBy('name', 'asc')->get();
-        return view('pages.admin.users', ['pupils' => $pupils, 'teachers' => $teachers, 'classes' => $classes ]);
+        return view('pages.admin.users', [
+            'pupils' => $filter_type == "Ученик" ? $filter : $default,
+            'teachers' => $filter_type == "Учитель" ? $filter : $default,
+            'classes' => $classes
+            ]);
     }
 
     public function create(Request $request){
@@ -80,27 +83,24 @@ class UsersController extends Controller
 
         $user = User::create([
             'user_id' => $request->user_id,
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'patronymic' => $request->patronymic,
             'user_type' => $request->user_type,
             'img' => $request->img,
+            'address' => $request->address,
             'password' => $request->password
         ]);
 
         if ($user) {
             if ($user->user_type == "Учитель"){
                 Teacher::create([
-                    'id' => $request->user_id,
-                    'name' => $request->name,
-                    'surname' => $request->surname,
-                    'patronymic' => $request->patronymic,
+                    'id' => $request->user_id
                 ]);
             } elseif ($user->user_type == "Ученик"){
                 Pupil::create([
                     'id' => $request->user_id,
-                    'name' => $request->name,
-                    'surname' => $request->surname,
-                    'patronymic' => $request->patronymic,
                     'class_id' => $request->class_id,
-                    'address' => $request->address,
                 ]);
             }
             return redirect()->back()
@@ -114,15 +114,14 @@ class UsersController extends Controller
     public function show(Request $request)
     {
         $user = User::where('user_id', $request->input('user_id'))->first();
-        $user_info = $user->user_type == "Учитель" ? $user->teacher : $user->pupil;
         return response()->json([
             'user_type' => $user->user_type,
-            'id' => $user_info->id,
-            'surname' => $user_info->surname,
-            'name' => $user_info->name,
-            'patronymic' => $user_info->patronymic,
-            'updated_at' => $user_info->updated_at,
-            'class_id' => $user_info->class == null ? "-" : $user_info->class->id,
+            'id' => $user->user_id,
+            'surname' => $user->surname,
+            'name' => $user->name,
+            'patronymic' => $user->patronymic,
+            'updated_at' => $user->updated_at,
+            'class_id' => $user->pupil->class_id ?? $user->teacher->class->id ?? '-',
             'img' => $user->img
         ]);
     }
@@ -145,27 +144,24 @@ class UsersController extends Controller
                 ->with('error', 'Ошибка валидации при редактировании данных пользователя '. $request->input('user_id'));
         }
 
-        if ($request->password){
+        $user->fill([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'patronymic' => $request->patronymic
+        ])->save();
+
+        if ($request->password){//изменим пароль
             $user->fill([
-                'password' => $request->password
+                'password' => $request->password,
             ])->save();
         }
 
-        if ($user->user_type == "Учитель"){
-            $user->teacher->fill([
-                'name' => $request->name,
-                'surname' => $request->surname,
-                'patronymic' => $request->patronymic
-            ])->save();
-        }
-        else if ($user->user_type == "Ученик"){
+        if ($user->user_type == "Ученик") {//изменим класс
             $user->pupil->fill([
-                'name' => $request->name,
-                'surname' => $request->surname,
-                'patronymic' => $request->patronymic,
                 'class_id' => $request->class_id,
             ])->save();
         }
+
         return redirect()->back()->with('success', 'Профиль '.$user->user_id.' обновлен!');
     }
 
