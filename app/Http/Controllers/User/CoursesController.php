@@ -4,8 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CoursesController extends Controller
 {

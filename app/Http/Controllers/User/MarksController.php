@@ -3,16 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\ClassInfo;
-use App\Models\Employment;
 use App\Models\Mark;
 use App\Models\Pupil;
-use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-
-use function Symfony\Component\String\s;
 
 class MarksController extends Controller
 {

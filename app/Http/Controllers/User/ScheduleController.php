@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Day;
-use App\Models\Employment;
 use App\Models\Lesson;
 use App\Models\Schedule;
-use App\Models\Teacher;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ScheduleController extends Controller
