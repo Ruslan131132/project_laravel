@@ -1,6 +1,6 @@
 <p align="center" style="display: flex">
-<img src="https://github.com/Ruslan131132/project_laravel/blob/master/public/img/LogoMospolytech.jpg" width="400" height="100px">
-<span style="margin: auto">Дневник</span>
+<img src="https://github.com/Ruslan131132/project_laravel/blob/master/public/img/LogoMospolytech.jpg" width="100px" height="100px">
+<span style="margin: auto; font-size: 500%">Дневник</span>
 </p>
 
 <p align="center">
