@@ -7,6 +7,10 @@ Route::get('/', function() {
     return view('pages.index');
 })->name('index');
 
+Route::get('/temp', function() {
+    return view('pages.temp');
+})->name('temp');
+
 Route::get('/logout', function(){
     Auth::logout();
     return redirect(route('index'));
@@ -44,6 +48,11 @@ Route::name('user.')->group(function(){
     /*Маршруты для страницы "Экзамены"*/
     Route::view('/user/exams',  'pages.user.exams')->middleware('auth')->name('exams');
 
+    /*Маршрут для страницы "Настройки"*/
+    Route::get('/user/settings', function() {
+        return view('pages.temp');
+    })->name('settings');
+
 });
 
 Route::name('admin.')->group(function(){
@@ -78,5 +87,10 @@ Route::name('admin.')->group(function(){
     Route::post('/create-schedule', [\App\Http\Controllers\Admin\ScheduleController::class, 'create'])->name('create-schedule');
     Route::post('/delete-schedule',  [\App\Http\Controllers\Admin\ScheduleController::class, 'delete'])->name('delete-schedule');
     Route::post('/edit-schedule',  [\App\Http\Controllers\Admin\ScheduleController::class, 'edit'])->name('edit-schedule');
+
+    /*Маршрут для страницы "Настройки"*/
+    Route::get('/admin/settings', function() {
+        return view('pages.temp');
+    })->name('settings');
 
 });
