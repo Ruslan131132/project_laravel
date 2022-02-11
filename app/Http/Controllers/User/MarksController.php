@@ -7,9 +7,12 @@ use App\Models\ClassInfo;
 use App\Models\Employment;
 use App\Models\Mark;
 use App\Models\Pupil;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+
+use function Symfony\Component\String\s;
 
 class MarksController extends Controller
 {
@@ -34,7 +37,10 @@ class MarksController extends Controller
                 Session::put('current_subject_id', $subjects[0]->id);
             }
 
-            $pupils = Pupil::where('class_id', Session::get('current_class_id'))->orderBy('surname', 'asc')->get();
+            $pupils = Pupil::where('class_id', Session::get('current_class_id'))->get()->sortBy(function ($info) {
+                return $info->user->surname;
+            });
+
             $marks = Mark::where('subject_id', Session::get('current_subject_id'))
                 ->whereIn('pupil_id', $pupils->pluck('id')->toArray())
                 ->get()
@@ -51,7 +57,15 @@ class MarksController extends Controller
                 'marks' => $marks
             ]);
         } else {
-            $subjects = Employment::distinct()->where('class_id', Auth::user()->pupil->class_id)->get(['subject_id']);
+            $subjects = array_unique(Auth::user()->pupil->class->schedule->where('class_id', Auth::user()->pupil->class_id)->map(function ($data){
+                return (object) ['id' => $data->subject->id, 'name' => $data->subject->name];
+            })->toArray(), SORT_REGULAR);//получили список всех предметов в уникальном виде
+
+            usort($subjects, function($a, $b)
+            {
+                return strcmp($a->name, $b->name);
+            });//сортируем по названию предмета
+
             $marks = Mark::where('pupil_id', Auth::user()->user_id)
                 ->get()
                 ->sortBy(function ($info) {
