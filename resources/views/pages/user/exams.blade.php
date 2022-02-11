@@ -5,7 +5,7 @@
 @section('title-block', 'Exams')
 
 @section('styles')
-    <style href="/css/user/user-ege.css"></style>
+    <link rel="stylesheet" href="/css/user/user-exams.css">
 @endsection
 
 @section('li-blocks')
@@ -18,14 +18,14 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <section class="jumbotron text-center" style="margin-top: 2rem;">
+    <div class="row justify-content-center">
+        <section class="jumbotron text-center mt-2">
             <div class="container">
                 <h1>Подготовка к Экзаменам</h1>
                 <p class="lead text-muted">Подготовительные курсы Центра довузовского образования Москосвкого Политехнического Университета обеспечат солидную подготовку к выпускным и вступительным экзаменам, повышение среднего балла, ликвидацию пробелов в школьной программе, индивидуальный подход и помощь опытных преподавателей в выборе будущей профессии.</p>
             </div>
         </section>
-        <div class="row" style="text-align: center" align="center">
+        <div class="row text-center">
             <div class="col-12">
                 <h3><b>Мы гарантируем:</b></h3>
             </div>
@@ -86,18 +86,18 @@
                 </p>
             </div>
         </div>
-
-        <br/>
-        <div class="row container-info">
-            <div class="row row-info" align="center">
-                <div class="col">
-                    <h6><a class="link_none_a" href="https://old.mospolytech.ru/index.php?id=5709">&nbsp;КАК&nbsp;<span style="color: red">ПОСТУПИТЬ НА ПОДГОТОВИТЕЛЬНЫЕ КУРСЫ</span> Московского Политеха</a></h6>
-                </div>
-            </div>
+    </div>
+    <div class="row row-info text-center">
+        <div class="col">
+            <h6>
+                <a href="https://old.mospolytech.ru/index.php?id=5709">
+                    &nbsp;КАК&nbsp;<span class="text-danger">ПОСТУПИТЬ НА ПОДГОТОВИТЕЛЬНЫЕ КУРСЫ</span> Московского Политеха
+                </a>
+            </h6>
         </div>
-        <br/>
-        <footer class="container">
-            <p style="text-align: right;">&copy; 2022 Московский Политехнический Университет · Курсы · Дневник · Проект</p>
-        </footer>
+    </div>
+    <br/>
+    <div class="row text-center">
+        <p>&copy; 2022 Московский Политехнический Университет · Курсы · Дневник · Проект</p>
     </div>
 @endsection

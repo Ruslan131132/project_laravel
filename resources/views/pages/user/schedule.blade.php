@@ -93,7 +93,7 @@
                                         @else
                                             @foreach($info->teacher as $teacher_info)
                                                 <span class="text-start pb-2 default">
-                                                    {{ '/ '.$teacher_info->surname.' '.$teacher_info->name.' '.$teacher_info->patronymic.' /' }}
+                                                    {{ '/ '.$teacher_info->user->surname.' '.$teacher_info->user->name.' '.$teacher_info->user->patronymic.' /' }}
                                                     <br>
                                                 </span>
                                             @endforeach

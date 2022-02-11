@@ -1,3 +1,7 @@
+table{
+    min-width: 1000px;
+}
+
 select.marks{
     border-radius: 5px;
     -webkit-appearance: none;
@@ -12,4 +16,9 @@ select.marks{
 }
 #subjects{
     outline:none;
+}
+
+form.form-marks {
+    display: inherit;
+    padding: 2px;
 }

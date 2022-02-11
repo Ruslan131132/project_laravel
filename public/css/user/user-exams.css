@@ -1,25 +1,11 @@
-.container-info{
+.row-info{
+    padding-top: 5px;
     background: #e9ecef;
     border-radius: 27px;
     border: 3px solid #66CCCC;
 }
 
-.row-info {
-    text-align: center;
-    margin-top: 1%;
-}
-
-.row-info a {
+a {
+    text-decoration: none;
     color: black;
-}
-
-@media screen and (max-device-width: 767px) {
-    .link_none_a {
-        font-size: 9pt;
-    }
-}
-@media screen and  (min-device-width: 767px) and (max-device-width: 1000px) {
-    .link_none_a {
-        font-size: 9pt;
-    }
 }

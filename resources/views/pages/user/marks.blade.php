@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="table-responsive mt-4">
-            <table class="table table-striped table-hover table-bordered table-sm" style="text-align: center;">
+            <table class="table table-striped table-hover table-bordered table-sm text-center">
                 @php
                     $full_select = 0;
                     $average_score = 0;
@@ -59,9 +59,9 @@
                 @if(Auth::user()->user_type == 'Учитель')
                     <thead>
                         <tr>
-                            <th scope="col" style="width:20%;">ФИО ученика</th>
+                            <th scope="col">ФИО ученика</th>
                             <th scope="col">Оценки</th>
-                            <th scope="col" style="width:10%;">Ср. балл</th>
+                            <th scope="col">Ср. балл</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,11 +71,11 @@
                             $average_score = 0;
                         @endphp
                         <tr>
-                            <th scope="col-md-3 col-lg-2">{{ $pupil->surname.' '.$pupil->name.' '.$pupil->patronymic }}</th>
+                            <th scope="col-md-3 col-lg-2">{{ $pupil->user->surname.' '.$pupil->user->name.' '.$pupil->user->patronymic }}</th>
                             <td>
                                 @foreach($marks as $mark)
                                     @if($pupil->id == $mark->pupil_id)
-                                        <form method="POST" action="{{ route('user.edit-mark') }}" style="display: inherit; padding: 2px;">
+                                        <form class="form-marks" method="POST" action="{{ route('user.edit-mark') }}">
                                             @csrf
                                             <input type="hidden" value="{{$mark->id}}" name="id" />
                                             <input type="hidden" value="{{$pupil->id}}" name="pupil_id" />
@@ -95,7 +95,7 @@
                                     @endif
                                 @endforeach
                                 @for($m = 0; $m < 33 - $full_select; $m++)
-                                    <form method="POST" action="{{ route('user.create-mark') }}" style="display: inherit; padding: 2px;">
+                                    <form class="form-marks" method="POST" action="{{ route('user.create-mark') }}">
                                         @csrf
                                         <input type="hidden" value="{{$pupil->id}}" name="pupil_id" />
                                         <select data-pupil_id='{{$pupil->id}}' name="mark" data-subject_id='{{Session::get('current_subject_id')}}' class="marks" onChange="this.form.submit()">
@@ -114,12 +114,12 @@
                         </tr>
                     @endforeach
                     </tbody>
-                @else
+                @elseif(Auth::user()->user_type == 'Ученик')
                     <thead>
                         <tr>
-                            <th scope="col-2" >Предмет</th>
-                            <th scope="col-9">Оценки</th>
-                            <th scope="col-1" style="width:10%;">Ср. балл</th>
+                            <th scope="col" >Предмет</th>
+                            <th scope="col">Оценки</th>
+                            <th scope="col" >Ср. балл</th>
                         </tr>
                     </thead>
                     <tbody>

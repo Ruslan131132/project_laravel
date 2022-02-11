@@ -5,35 +5,28 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    border-radius:25px 25px 0px 0px;
+    border-radius: 25px 0 0 25px;
+}
+a.register-status{
+    min-width: 145px;
+}
+@media (min-width: 992px) {
+    p.description {
+        min-height: 170px;
+    }
+    div.course-bottom{
+        min-height: 70px;
+    }
+    p.course-teacher{
+        min-height: 75px;
+    }
 }
 
-/* Делаем заголовки тоньше */
-.featurette-heading {
-    font-weight: 300;
-    line-height: 1;
-    letter-spacing: -.05rem;
-}
-@media screen and (max-device-width: 767px) {
-    .bd-placeholder-img {
-        height: 250px;
+@media (min-width: 1200px) {
+    p.description {
+        min-height: 110px;
     }
-    .alert{
-        width: 80%;
-        left: 15%;
-    }
-}
-@media screen and  (min-device-width: 767px) and (max-device-width: 1000px) {
-    .bd-placeholder-img {
-        height: 130px;
-    }
-    .alert{
-        width: 80%;
-        left: 40%;
-    }
-}
-@media screen and (min-device-width: 1000px) {
-    .alert{
-        left: 50%;
+    p.course-teacher, div.course-bottom{
+        min-height: auto;
     }
 }
