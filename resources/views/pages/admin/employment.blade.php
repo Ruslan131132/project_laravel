@@ -26,9 +26,9 @@
                     <form class="mb-2 mx-auto d-flex justify-content-center justify-content-lg-end " method="POST" action="{{ route('set-page') }}">
                         @csrf
                         <input type="hidden" name="current_page" value="employment">
-                        <select class="form-select" name="current_subpage" id="teacher_id" onChange="this.form.submit()" style="width:auto; margin: 0">
+                        <select class="form-select m-0 w-auto" name="current_subpage" id="teacher_id" onChange="this.form.submit()" >
                             @foreach ($teachers as $teacher)
-                                <option value="{{ $teacher->id }}" {{ $teacher->id == Session::get('current_subpage') ? 'selected' : '' }}>{{ $teacher->surname." ".$teacher->name." ".$teacher->patronymic }}</option>
+                                <option value="{{ $teacher->user_id }}" {{ $teacher->user_id == Session::get('current_subpage') ? 'selected' : '' }}>{{ $teacher->surname." ".$teacher->name." ".$teacher->patronymic }}</option>
                             @endforeach
                         </select>
                     </form>

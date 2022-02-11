@@ -1,0 +1,162 @@
+input[type="number"]::-webkit-inner-spin-button {
+    display: none;
+}
+
+.password-control {
+    position: relative;
+    left: calc(100% - 26px);
+    bottom: 30px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background: url('/img/forPassword/view.svg') 0 0 no-repeat;
+}
+
+.password-control.view {
+    background: url('/img/forPassword/noview.svg') 0 0 no-repeat;
+}
+
+/* user-dashboard-info-box */
+.user-dashboard-info-box .candidates-list .thumb {
+    margin-right: 20px;
+}
+.user-dashboard-info-box .candidates-list .thumb img {
+    width: 80px;
+    height: 80px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 25%;
+}
+
+.user-dashboard-info-box .title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.user-dashboard-info-box .candidates-list td {
+    vertical-align: middle;
+}
+
+.user-dashboard-info-box td li {
+    margin: 0 4px;
+}
+
+.user-dashboard-info-box .table thead th {
+    border-bottom: none;
+}
+
+.table.manage-candidates-top th {
+    border: 0;
+}
+
+.user-dashboard-info-box .candidate-list-favourite-time .candidate-list-favourite {
+    margin-bottom: 10px;
+}
+
+.table.manage-candidates-top {
+    min-width: 650px;
+}
+
+.user-dashboard-info-box .candidate-list-details ul {
+    color: #969696;
+}
+
+.candidate-banner .candidate-list:hover {
+    position: inherit;
+    -webkit-box-shadow: inherit;
+    box-shadow: inherit;
+    z-index: inherit;
+}
+
+
+input#search-user{
+    border-color: #e9ecef #e9ecef transparent #dee2e6;
+    isolation: isolate;
+    color: grey;
+    border-radius: 0.25rem 0 0 0;
+}
+
+span.searchButton {
+    border-bottom: 0;
+    border-radius: 0 0.25rem 0 0;
+}
+span.searchButton > img {
+    width: 20px;
+    height: 20px;
+    transform: scale(-2, 2);
+}
+
+div.nav-tabs {
+    min-height: 42px;
+}
+
+td.text-end {
+    min-width: 100px;
+}
+
+div.dropdown img {
+    width: 30px;
+    height: 30px;
+}
+
+button#dropdownMenuAvatar {
+    border: 1px solid #ced4da;
+    padding: 3px;
+}
+
+ul.dropdown-menu > li {
+    padding: 4px 0px; cursor: pointer;
+}
+
+div#editModal img#user_img {
+    border-radius: 30px;
+    height: 140px;
+    overflow: hidden;
+}
+
+div#collapsePassword a {
+    bottom: 39px;
+}
+
+*:focus {
+    outline: none;
+}
+
+.form-control:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid #ced4da;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.dot-red {
+    background: red;
+}
+.dot-green {
+    background: #39c739;
+}
+
+@media screen and (max-width: 540px) {
+    div.nav-tabs{
+        justify-content: space-between;
+    }
+    div.nav-tabs form{
+        flex-basis: 100%;
+        height: 50px;
+    }
+    div.nav-tabs form span{
+        height: 50px;
+    }
+}

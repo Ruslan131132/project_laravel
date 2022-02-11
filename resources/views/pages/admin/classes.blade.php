@@ -5,22 +5,7 @@
 @section('title-block', 'Create Class')
 
 @section('styles')
-    <link rel="stylesheet" href="/css/admin/admin.css">
-    <style>
-        @media screen and (max-device-width: 540px) {
-            div.nav-tabs{
-                justify-content: space-between;
-            }
-            div.nav-tabs form{
-                flex-basis: 100%;
-                height: 50px;
-            }
-            div.nav-tabs form span{
-                height: 50px;
-            }
-        }
-    </style>
-
+    <link rel="stylesheet" href="/css/admin/classes.css">
 @endsection
 
 @section('li-blocks')
@@ -39,7 +24,7 @@
         <div class="bd-heading align-self-start mt-3 mb-3 mt-xl-0 mb-xl-2">
             <h3 class="pb-2 border-bottom text-center text-lg-start">Записи о классах и курсах</h3>
         </div>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist" style="padding-right: 0">
+        <div class="nav nav-tabs pe-0" id="nav-tab" role="tablist">
             <button class="nav-link {{ Session::get('current_subpage') == 'Classes' ? 'active' : ''}}" id="nav-classes-tab" data-type="Classes" data-bs-toggle="tab" data-bs-target="#nav-classes" type="button" role="tab" aria-controls="nav-classes" aria-selected="{{ Session::get('current_subpage') == 'Classes' }}">Классы</button>
             <button class="nav-link {{ Session::get('current_subpage') == 'Courses' ? 'active' : ''}}" id="nav-courses-tab" data-type="Courses" data-bs-toggle="tab" data-bs-target="#nav-courses" type="button" role="tab" aria-controls="nav-courses" aria-selected="{{ Session::get('current_subpage') == 'Courses' }}">Курсы</button>
             <button class="nav-link {{ Session::get('current_subpage') == 'Add' ? 'active' : ''}}" type="button" data-type="Add" data-bs-toggle="tab" data-bs-target="#nav-add" type="button" role="tab" aria-controls="nav-add" aria-selected="{{ Session::get('current_subpage') == 'Add' }}">Добавить</button>
@@ -58,16 +43,16 @@
                     @foreach ($classes as $class)
                         <tr>
                             <th scope="row">{{ $class->name }}</th>
-                            <td class="text-center">{{ $class->teacher->surname." ".$class->teacher->name." ".$class->teacher->patronymic }}</td>
+                            <td class="text-center">{{ $class->teacher->user->surname." ".$class->teacher->user->name." ".$class->teacher->user->patronymic }}</td>
                             <td class="text-end">
                                 {{--Кнопка "редактировать" - для редактирования информации в расписании--}}
-                                <span class="p-0 editButton" data-class_id="{{ $class->id }}" data-teacher_id="{{ $class->teacher->id }}">
+                                <span class="p-0 editButton" data-class_id="{{ $class->id }}" data-teacher_id="{{ $class->teacher_id }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="grey" class="bi bi-pencil" viewBox="0 0 19 14" style="background: #f8f9fa; border-radius: 20px">
                                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                     </svg>
                                 </span>
                                 {{--Кнопка "удалить" - для удаления информации в расписании--}}
-                                <span class="p-0 deleteButton" data-class_name="{{ $class->name }}" data-class_id="{{ $class->id }}" data-teacher_id="{{ $class->teacher->id }}">
+                                <span class="p-0 deleteButton" data-class_name="{{ $class->name }}" data-class_id="{{ $class->id }}" data-teacher_id="{{ $class->teacher_id }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-trash" viewBox="0 0 16 16" style="background: #dc3545; border-radius: 20px; padding: 5px">
                                         <path fill-rule="evenodd" d="M6.5 1a.5.5 0 0 0-.5.5v1h4v-1a.5.5 0 0 0-.5-.5h-3ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1H3.042l.846 10.58a1 1 0 0 0 .997.92h6.23a1 1 0 0 0 .997-.92l.846-10.58Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
                                     </svg>
@@ -91,23 +76,23 @@
                     @foreach ($courses as $course)
                         <tr>
                             <th scope="row">
-                                <p style="margin: 0">{{ $course->name }}</p>
+                                <p class="m-0">{{ $course->name }}</p>
                                 <span id="{{ $course->id }}" class="form-text">
                                     {{ $course->description }}
                                 </span>
                                 <input id="course_price" type="hidden" value="{{ $course->price }}">
                                 <input id="course_training_period" type="hidden" value="{{ $course->training_period }}">
                             </th>
-                            <td>{{ $course->teacher->surname." ".$course->teacher->name." ".$course->teacher->patronymic }}</td>
+                            <td>{{ $course->teacher->user->surname." ".$course->teacher->user->name." ".$course->teacher->user->patronymic }}</td>
                             <td class="text-end">
                                 {{--Кнопка "редактировать"--}}
-                                <span class="p-0 editButton" data-course_id="{{ $course->id }}" data-teacher_id="{{ $course->teacher->id }}">
+                                <span class="p-0 editButton" data-course_id="{{ $course->id }}" data-teacher_id="{{ $course->teacher_id }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="grey" class="bi bi-pencil" viewBox="0 0 19 14" style="background: #f8f9fa; border-radius: 20px">
                                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                     </svg>
                                 </span>
                                 {{--Кнопка "удалить"--}}
-                                <span class="p-0 deleteButton" data-course_name="{{ $course->name }}" data-course_id="{{ $course->id }}" data-teacher_id="{{ $course->teacher->id }}">
+                                <span class="p-0 deleteButton" data-course_name="{{ $course->name }}" data-course_id="{{ $course->id }}" data-teacher_id="{{ $course->teacher_id }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-trash" viewBox="0 0 16 16" style="background: #dc3545; border-radius: 20px; padding: 5px">
                                         <path fill-rule="evenodd" d="M6.5 1a.5.5 0 0 0-.5.5v1h4v-1a.5.5 0 0 0-.5-.5h-3ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1H3.042l.846 10.58a1 1 0 0 0 .997.92h6.23a1 1 0 0 0 .997-.92l.846-10.58Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
                                     </svg>
@@ -138,12 +123,12 @@
                                 <label for="select" class="form-label">Руководитель</label>
                                 <select class="form-select" name="teacher_id" id="teacher_id">
                                     @foreach($teachers_without_class as $teacher)
-                                        <option value="{{ $teacher->id }}">{{ $teacher->surname." ".$teacher->name." ".$teacher->patronymic }}</option>
+                                        <option value="{{ $teacher->user_id }}">{{ $teacher->surname." ".$teacher->name." ".$teacher->patronymic }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-                        <div class="row mb-3" id="courseRow" style="display: none">
+                        <div class="row mb-3" id="courseRow">
                             <div class="col-sm-2 themed-grid-col pe-2">
                                 <label for="select" class="form-label">Стоимость(₽)</label>
                                 <input class="form-control" type="number" value="" name="price" id="price">
@@ -152,13 +137,17 @@
                                 <label for="email" class="form-label">Изображение</label>
                                 <input type="hidden" name="img" id="user_img" value="">
                                 <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuAvatar" data-bs-toggle="dropdown" aria-expanded="false" style="border: 1px solid #ced4da; padding: 3px;">
+                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuAvatar" data-bs-toggle="dropdown" aria-expanded="false">
                                         <img src="" width="30" height="30" />
                                     </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAvatar" style="min-width: 56px;">
-                                        <li style="padding: 4px 0px; cursor: pointer"><img src="" width="30" height="30" /></li>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAvatar">
+                                        <li>
+                                            <img src="" width="30" height="30" />
+                                        </li>
                                         @foreach(Storage::disk('public')->allFiles('img/courses') as $img)
-                                            <li style="padding: 4px 0px; cursor: pointer"><img src="/storage/{{ $img }}" width="30" height="30" /></li>
+                                            <li>
+                                                <img src="/storage/{{ $img }}" width="30" height="30" />
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -210,7 +199,7 @@
                                     <label for="select" class="form-label">Руководитель</label>
                                     <select class="form-select" name="teacher_id" id="teacher_id">
                                         @foreach ($teachers as $teacher)
-                                            <option value="{{ $teacher->id }}">{{ $teacher->surname." ".$teacher->name." ".$teacher->patronymic }}</option>
+                                            <option value="{{ $teacher->user_id }}">{{ $teacher->surname." ".$teacher->name." ".$teacher->patronymic }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -273,10 +262,10 @@
             console.log($(this).val());
             let data;
             if (this.value == "Class"){
-                $('div#courseRow').hide();
+                $('div#courseRow').css('display', 'none');
                 data = teachers_without_class
             } else if (this.value == "Course"){
-                $('div#courseRow').show();
+                $('div#courseRow').css('display', 'flex');
                 data = teachers
             }
             $(this).parent().parent().find('select#teacher_id').html(data.map(function(elem) {
@@ -340,7 +329,7 @@
             $('#editBody input#class_id').val(class_id);
             $('#editBody input#class_name').val(class_name);
             $('#editModal select#teacher_id').html(teachers_array.map(function(elem) {
-                return `<option ${elem['id'] == teacher_id ? 'selected' : '' } value="${elem['id']}">${elem['surname']} ${elem['name']} ${elem['patronymic']}</option>`;
+                return `<option ${elem['user_id'] == teacher_id ? 'selected' : '' } value="${elem['user_id']}">${elem['surname']} ${elem['name']} ${elem['patronymic']}</option>`;
             })).prepend(data_type == 'Класс' ? `<option selected value="${teacher_id}">${teacher_name}</option>` : "");
         });
 

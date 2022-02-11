@@ -5,45 +5,7 @@
 @section('title-block', 'Users')
 
 @section('styles')
-    <link rel="stylesheet" href="/css/admin/admin.css">
-    <style>
-        *:focus {
-            outline: none;
-        }
-
-        .form-control:focus {
-            -webkit-box-shadow: none;
-            box-shadow: none;
-            border: 1px solid #ced4da;
-        }
-
-        .dot {
-            height: 10px;
-            width: 10px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        .dot-red {
-            background: red;
-        }
-        .dot-green {
-            background: #39c739;
-        }
-
-        @media screen and (max-device-width: 540px) {
-            div.nav-tabs{
-                justify-content: space-between;
-            }
-            div.nav-tabs form{
-                flex-basis: 100%;
-                height: 50px;
-            }
-            div.nav-tabs form span{
-                height: 50px;
-            }
-        }
-    </style>
-
+    <link rel="stylesheet" href="/css/admin/users.css">
 @endsection
 
 @section('li-blocks')
@@ -68,9 +30,9 @@
                 <form class="me-0 m-auto" method="POST" action="{{ route('admin.search-user') }}">
                     @csrf
                     <div class="input-group">
-                        <input type="text" name="search-user" id="search-user" class="form-control nav-link" value="{{\Illuminate\Support\Facades\Session::get('search-input', "")}}" aria-label="" style="border-color: #e9ecef #e9ecef transparent #dee2e6; isolation: isolate; color: grey; border-radius: 0; border-top-left-radius: 0.25rem">
-                        <span class="input-group-text searchButton" style="border-radius: 0; border-bottom: 0; border-top-right-radius: 0.25rem;" onclick="$(this).parent().parent().submit()">
-                            <img src="/img/search-icon.png" style="transform: scaleX(-1); width: 20px; height: 20px; transform: scale(-2, 2);"/>
+                        <input type="text" name="search-user" id="search-user" class="form-control nav-link" value="{{\Illuminate\Support\Facades\Session::get('search-input', "")}}" aria-label="">
+                        <span class="input-group-text searchButton" onclick="$(this).parent().parent().submit()">
+                            <img src="/img/search-icon.png" />
                         </span>
                     </div>
                 </form>
@@ -90,17 +52,17 @@
                                     </thead>
                                     <tbody>
                                     @foreach ($teachers as $teacher)
-                                        <tr class="candidates-list" data-user_id="{{$teacher->id}}">
+                                        <tr class="candidates-list" data-user_id="{{$teacher->user_id}}">
                                             <td class="title">
                                                 <div class="thumb">
-                                                    <img class="img-fluid" src="{{$teacher->user->img}}" alt="{{ $teacher->surname }} {{ $teacher->name }} {{ $teacher->patronymic }}">
+                                                    <img class="img-fluid" src="{{$teacher->img}}" alt="{{ $teacher->surname }} {{ $teacher->name }} {{ $teacher->patronymic }}">
                                                 </div>
                                                 <div class="candidate-list-details">
                                                     <div class="candidate-list-info">
                                                         <div class="candidate-list-title">
                                                             <h5 class="mb-0">
                                                                 {{ $teacher->surname }} {{ $teacher->name }} {{ $teacher->patronymic }}
-                                                                @if(Cache::has('user-is-online-' . $teacher->user->user_id))
+                                                                @if(Cache::has('user-is-online-' . $teacher->user_id))
                                                                     <span class="dot dot-green"></span>
                                                                 @else
                                                                     <span class="dot dot-red"></span>
@@ -110,29 +72,29 @@
                                                         </div>
                                                         <div class="candidate-list-option">
                                                             <ul class="list-unstyled">
-                                                                <li><i class="fas fa-filter pr-1"></i>Классный руководитель: {{ $teacher->class->name ?? "-"}}<br/></li>
-                                                                <li><i class="fas fa-map-marker-alt pr-1"></i>ID: {{ $teacher->user->user_id }}</li>
+                                                                <li><i class="fas fa-filter pr-1"></i>Классный руководитель: {{ $teacher->teacher->class->name ?? "-"}}<br/></li>
+                                                                <li><i class="fas fa-map-marker-alt pr-1"></i>ID: {{ $teacher->user_id }}</li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="candidate-list-favourite-time text-center">
-                                                @if(Cache::has('user-is-online-' . $teacher->id))
+                                                @if(Cache::has('user-is-online-' . $teacher->user_id))
                                                     <span class="text-success">Онлайн</span>
                                                 @else
-                                                    <span class="text-secondary">Последний раз был {{ Carbon\Carbon::parse($teacher->user->last_seen)->diffForHumans() }}</span>
+                                                    <span class="text-secondary">Последний раз был {{ Carbon\Carbon::parse($teacher->last_seen)->diffForHumans() }}</span>
                                                 @endif
                                             </td>
-                                            <td class="text-end" style="min-width: 100px;">
+                                            <td class="text-end">
                                                 {{--Кнопка "редактировать"--}}
-                                                <span class="p-0 editButton" data-user_id="{{ $teacher->id }}">
+                                                <span class="p-0 editButton" data-user_id="{{ $teacher->user_id }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="grey" class="bi bi-pencil" viewBox="0 0 19 14" style="background: #f8f9fa; border-radius: 20px">
                                                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                                     </svg>
                                                 </span>
                                                 {{--Кнопка "удалить"--}}
-                                                <span class="p-0 deleteButton" data-user_id="{{ $teacher->id }}">
+                                                <span class="p-0 deleteButton" data-user_id="{{ $teacher->user_id }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-trash" viewBox="0 0 16 16" style="background: #dc3545; border-radius: 20px; padding: 5px">
                                                         <path fill-rule="evenodd" d="M6.5 1a.5.5 0 0 0-.5.5v1h4v-1a.5.5 0 0 0-.5-.5h-3ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1H3.042l.846 10.58a1 1 0 0 0 .997.92h6.23a1 1 0 0 0 .997-.92l.846-10.58Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
                                                     </svg>
@@ -166,14 +128,14 @@
                                         <tr class="candidates-list" data-user_id="{{$pupil->id}}">
                                             <td class="title">
                                                 <div class="thumb">
-                                                    <img class="img-fluid" src="{{ $pupil->user->img }}" alt="">
+                                                    <img class="img-fluid" src="{{ $pupil->img }}" alt="">
                                                 </div>
                                                 <div class="candidate-list-details">
                                                     <div class="candidate-list-info">
                                                         <div class="candidate-list-title">
                                                             <h5 class="mb-0">
                                                                 {{ $pupil->surname }} {{ $pupil->name }} {{ $pupil->patronymic }}
-                                                                @if(Cache::has('user-is-online-' . $pupil->user->user_id))
+                                                                @if(Cache::has('user-is-online-' . $pupil->user_id))
                                                                     <span class="dot dot-green"></span>
                                                                 @else
                                                                     <span class="dot dot-red"></span>
@@ -182,29 +144,29 @@
                                                         </div>
                                                         <div class="candidate-list-option">
                                                             <ul class="list-unstyled">
-                                                                <li><i class="fas fa-filter pr-1"></i>Класс: {{ $pupil->class->name}}<br/></li>
-                                                                <li><i class="fas fa-map-marker-alt pr-1"></i>ID: {{ $pupil->user->user_id }}</li>
+                                                                <li><i class="fas fa-filter pr-1"></i>Класс: {{ $pupil->pupil->class->name}}<br/></li>
+                                                                <li><i class="fas fa-map-marker-alt pr-1"></i>ID: {{ $pupil->user_id }}</li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="candidate-list-favourite-time text-center">
-                                                @if(Cache::has('user-is-online-' . $pupil->id))
+                                                @if(Cache::has('user-is-online-' . $pupil->user_id))
                                                     <span class="text-success">Онлайн</span>
                                                 @else
-                                                    <span class="text-secondary">Последний раз был {{ Carbon\Carbon::parse($pupil->user->last_seen)->diffForHumans() }}</span>
+                                                    <span class="text-secondary">Последний раз был {{ Carbon\Carbon::parse($pupil->last_seen)->diffForHumans() }}</span>
                                                 @endif
                                             </td>
-                                            <td class="text-end" style="min-width: 100px;">
+                                            <td class="text-end">
                                                 {{--Кнопка "редактировать"--}}
-                                                <span class="p-0 editButton" data-user_id="{{ $pupil->id }}">
+                                                <span class="p-0 editButton" data-user_id="{{ $pupil->user_id }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="grey" class="bi bi-pencil" viewBox="0 0 19 14" style="background: #f8f9fa; border-radius: 20px">
                                                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                                     </svg>
                                                 </span>
                                                 {{--Кнопка "удалить"--}}
-                                                <span class="p-0 deleteButton" data-user_id="{{ $pupil->id }}">
+                                                <span class="p-0 deleteButton" data-user_id="{{ $pupil->user_id }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-trash" viewBox="0 0 16 16" style="background: #dc3545; border-radius: 20px; padding: 5px">
                                                         <path fill-rule="evenodd" d="M6.5 1a.5.5 0 0 0-.5.5v1h4v-1a.5.5 0 0 0-.5-.5h-3ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1H3.042l.846 10.58a1 1 0 0 0 .997.92h6.23a1 1 0 0 0 .997-.92l.846-10.58Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
                                                     </svg>
@@ -273,18 +235,16 @@
                                         <a class="password-control" onclick="return show_hide_password(this);"></a>
                                     </div>
                                     <div class="col-md-3 themed-grid-col">
-                                        <label for="user_img">Аватар</label>
-                                        <input type="hidden" name="img" id="user_img" value="null">
+                                        <label for="img">Аватар</label>
+                                        <input type="hidden" name="img" id="img" value="">
                                         <div class="dropdown">
-                                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuAvatar" data-bs-toggle="dropdown" aria-expanded="false" style="border: 1px solid #ced4da; padding: 3px;">
-                                                <img src="" width="30" height="30" />
-                                            </button>
+                                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuAvatar" data-bs-toggle="dropdown" aria-expanded="false"><img src="" /> -</button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAvatar">
-                                                <li style="padding: 4px 0px; cursor: pointer"><img src="" width="30" height="30" /> -</li>
-                                                <li style="padding: 4px 0px; cursor: pointer" ><img src="/img/avatar/pupil-male.png" width="30" height="30" alt="Ученик"> Ученик</li>
-                                                <li style="padding: 4px 0px; cursor: pointer"><img src="/img/avatar/pupil-female.png" width="30" height="30" alt="Ученица"> Ученица</li>
-                                                <li style="padding: 4px 0px; cursor: pointer"><img src="/img/avatar/teacher-male.png" width="30" height="30" alt="Учитель"> Учитель</li>
-                                                <li style="padding: 4px 0px; cursor: pointer"><img src="/img/avatar/teacher-female.png" width="30" height="30" alt="Учительница"> Учительница</li>
+                                                <li><img src="" /> -</li>
+                                                <li><img src="/img/avatar/pupil-male.png" alt="Ученик"> Ученик</li>
+                                                <li><img src="/img/avatar/pupil-female.png" alt="Ученица"> Ученица</li>
+                                                <li><img src="/img/avatar/teacher-male.png" alt="Учитель"> Учитель</li>
+                                                <li><img src="/img/avatar/teacher-female.png" alt="Учительница"> Учительница</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -324,13 +284,13 @@
                         <form method="POST" action="{{ route('admin.edit-user') }}">
                             @csrf
                             <div class="row">
-                                <div class="col-4 thumb" style="text-align: center">
-                                    <img name="user_img" id="user_img" src="" style="border-radius: 30px; height: 140px; overflow: hidden;">
+                                <div class="col-4 thumb text-center">
+                                    <img name="user_img" id="user_img" src="" >
                                 </div>
                                 <div class="col-8">
                                     <p class="text-secondary mb-3" name="user_type" id="user_type"></p>
                                     <div class="text-secondary">Класс:
-                                        <select class="form-select" name="class_id" id="class_id" style="width:auto; display: inline-block;" disabled>
+                                        <select class="form-select d-inline-block w-auto" name="class_id" id="class_id" disabled>
                                             <option>-</option>
                                             @foreach($classes as $class)
                                                 <option value="{{$class->id}}">{{ $class->name }}</option>
@@ -365,7 +325,7 @@
                                 <div class="collapse" id="collapsePassword">
                                     <div class="form-floating">
                                         <input type="password" name="password" id="password" class="form-control" placeholder="Пароль" required>
-                                        <a class="password-control" onclick="return show_hide_password(this);" style="bottom: 39px;"></a>
+                                        <a class="password-control" onclick="return show_hide_password(this);"></a>
                                         <label for="password">Пароль</label>
                                     </div>
                                 </div>
@@ -411,13 +371,11 @@
         //функционал списка типов пользователей
         $('select#user_type').on('change', function (e){
             if (this.value == "Учитель"){
-                $('select#class_id').parent().hide();
+                $(this).parent().parent().find('select#class_id').parent().hide();
                 $(this).parent().attr('class', 'col-12');
-                $('input#address').parent().hide();
             } else if (this.value == "Ученик"){
-                $('select#class_id').parent().show();
+                $(this).parent().parent().find('select#class_id').parent().show();
                 $(this).parent().attr('class', 'col-6');
-                $('input#address').parent().show();
             }
         })
 
@@ -514,7 +472,7 @@
                     $('#loader').html("Ошибка <strong>"+ jqXHR.status + "</strong> - " + error).show();
                     $('#saveEdit').prop("disabled", true);
                 },
-                timeout: 8000
+                timeout: 100000
             })
         });
 
