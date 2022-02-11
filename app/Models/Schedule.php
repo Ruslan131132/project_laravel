@@ -28,7 +28,7 @@ class Schedule extends Model
 
     public function class()
     {
-        return $this->belongsTo(ClassInfo::class);
+        return $this->belongsTo(ClassInfo::class, 'class_id', 'id');
     }
     public function subject()
     {

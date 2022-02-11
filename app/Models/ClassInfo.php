@@ -16,20 +16,16 @@ class ClassInfo extends Model
         'teacher_id',
     ];
 
-    public function pupils()
+    public function pupil()
     {
-        return $this->hasMany(Pupil::class, 'id', 'pupil_id');
+        return $this->hasMany(Pupil::class,'pupil_id', 'id');
     }
     public function teacher()
     {
-        return $this->hasOne(Teacher::class, 'id', 'teacher_id');
-    }
-    public function employment()
-    {
-        return $this->hasMany(Employment::class, 'class_id', 'id');
+        return $this->belongsTo(Teacher::class, 'teacher_id', 'id');
     }
     public function schedule()
     {
-        return $this->hasMany(Schedule::class);
+        return $this->hasMany(Schedule::class, 'class_id', 'id');
     }
 }

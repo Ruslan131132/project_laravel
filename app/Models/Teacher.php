@@ -14,6 +14,8 @@ class Teacher extends Model
         'surname',
         'patronymic'
     ];
+
+
     /**
      * @var mixed
      */
@@ -39,11 +41,7 @@ class Teacher extends Model
 
     public function class()
     {
-        return $this->hasOne(ClassInfo::class);
-    }
-    public function employment()
-    {
-        return $this->hasMany(Employment::class);
+        return $this->hasOne(ClassInfo::class, 'teacher_id', 'id');
     }
     public function course()
     {
