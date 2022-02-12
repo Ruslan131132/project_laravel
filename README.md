@@ -41,33 +41,33 @@
 
 > Cтраница пользователя(в данном примере - преподавателя)
 
-![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/teacher-1)
+![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/teacher-1.png)
 
-![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/teacher-2)
+![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/teacher-2.png)
 
-![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/teacher-3)
+![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/teacher-3.png)
 
-![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/teacher-4)
+![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/teacher-4.png)
 
-![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/teacher-5)
+![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/teacher-5.png)
 
-![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/teacher-6)
+![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/teacher-6.png)
 
 ------------
 
 > Cтраница администратора
 
-![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/admin-1)
+![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/admin-1.png)
 
-![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/admin-2)
+![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/admin-2.png)
 
-![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/admin-3)
+![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/admin-3.png)
 
-![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/admin-4)
+![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/admin-4.png)
 
-![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/admin-5)
+![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/admin-5.png)
 
-![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/admin-6)
+![](https://github.com/Ruslan131132/project_laravel/blob/master/public/img/demo/admin-6.png)
 
 ------------
 
